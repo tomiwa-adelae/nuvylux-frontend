@@ -81,12 +81,12 @@ export function MobileNavbar() {
             )}
           </div>
         </ScrollArea>
-        <SheetFooter className="mb-10">
+        <SheetFooter className="mb-12">
           <Button variant={"secondary"}>
             <Link href="/login">Sign in</Link>
           </Button>
           <Button asChild>
-            <Link href={"/create-account"}>Join now</Link>
+            <Link href={"/register"}>Join now</Link>
           </Button>
         </SheetFooter>
       </SheetContent>

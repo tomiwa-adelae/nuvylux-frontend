@@ -128,3 +128,27 @@ export const contactFormSubjects = [
   { value: "Support", label: "General Support / Feedback" },
   { value: "Other", label: "Other" },
 ];
+
+export const testimonials = [
+  {
+    image: "/assets/images/auth-1.jpg",
+    testimony:
+      "NUVYLUX doesn’t just feel like a brand, it feels like a movement. Every detail is intentional, refined, and empowering.",
+    name: "Tomiwa Adelae",
+    portfolio: "Creative Director",
+  },
+  {
+    image: "/assets/images/auth-2.jpg",
+    testimony:
+      "From design to experience, NUVYLUX represents a new level of elegance. It’s where innovation and beauty truly meet.",
+    name: "Aisha Bello",
+    portfolio: "Beauty Entrepreneur",
+  },
+  {
+    image: "/assets/images/auth-3.jpg",
+    testimony:
+      "NUVYLUX made me feel seen as a creator. The platform blends culture, creativity, and technology in a way that feels global and modern.",
+    name: "Daniel Okafor",
+    portfolio: "Fashion Creative",
+  },
+];

@@ -54,7 +54,7 @@ export const Header = () => {
           </Button>
 
           <Button asChild variant={"white"} size="md">
-            <Link href="/create-account">Join Now</Link>
+            <Link href="/register">Join Now</Link>
           </Button>
           <MobileNavbar />
         </div>

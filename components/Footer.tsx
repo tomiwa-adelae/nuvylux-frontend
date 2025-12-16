@@ -10,7 +10,7 @@ export const Footer = () => {
     { title: "Legal & Privacy", href: "/legal" },
     { title: "Careers", href: "/careers" },
     { title: "Press Kit", href: "/press" },
-    { title: "Terms of Service", href: "/terms" },
+    { title: "Terms of Service", href: "/terms-of-service" },
   ];
 
   const socialLinks = [
