@@ -20,7 +20,7 @@ export const AboutHero = () => {
       <div className="z-10 relative max-w-4xl text-center pt-20 pb-16">
         {/* Subtitle/Pre-Header */}
         <h1 className="text-lg uppercase tracking-[0.2em] text-primary mb-2">
-          NUVYLUX GLOBAL
+          Nuvylux Global
         </h1>
         <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
           The New Light <br className="hidden md:inline" /> of Luxury.

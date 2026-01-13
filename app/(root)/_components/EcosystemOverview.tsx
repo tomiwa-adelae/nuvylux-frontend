@@ -25,7 +25,7 @@ export const EcosystemOverview = () => {
       title: "For Brands & Partners",
       tagline: "Strategy, Content, & Partnerships",
       description:
-        "Collaborate with NUVYLUX Agency for bespoke digital strategy, content creation, and technology integration.",
+        "Collaborate with Nuvylux Agency for bespoke digital strategy, content creation, and technology integration.",
       link: "/partnerships",
     },
   ];
@@ -35,7 +35,7 @@ export const EcosystemOverview = () => {
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-semibold text-primary mb-3">
-            The NUVYLUX Ecosystem
+            The Nuvylux Ecosystem
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A seamless digital world connecting creators, customers, and

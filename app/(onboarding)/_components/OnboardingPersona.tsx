@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import api from "@/lib/api";
 import { cn } from "@/lib/utils";
-import { IconCompass, IconSparkles } from "@tabler/icons-react";
+import {
+  IconBuildingStore,
+  IconCompass,
+  IconSparkles,
+  IconStars,
+  IconTools,
+} from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -20,7 +26,7 @@ export const OnboardingPersona = () => {
       name: (
         <>
           The Visionary <br />
-          (Client)
+          <span className="text-xs opacity-70">(Client)</span>
         </>
       ),
       value: "client",
@@ -30,10 +36,40 @@ export const OnboardingPersona = () => {
       name: (
         <>
           The Architect <br />
-          (Professional)
+          <span className="text-xs opacity-70">(Professional)</span>
         </>
       ),
       value: "professional",
+    },
+    {
+      icon: IconBuildingStore,
+      name: (
+        <>
+          The Brand <br />
+          <span className="text-xs opacity-70">(Business)</span>
+        </>
+      ),
+      value: "brand",
+    },
+    {
+      icon: IconTools,
+      name: (
+        <>
+          The Artisan <br />
+          <span className="text-xs opacity-70">(Craft & Handmade)</span>
+        </>
+      ),
+      value: "artisan",
+    },
+    {
+      icon: IconStars,
+      name: (
+        <>
+          The Curator <br />
+          <span className="text-xs opacity-70">(Creator / Influencer)</span>
+        </>
+      ),
+      value: "curator",
     },
   ];
 
@@ -54,13 +90,13 @@ export const OnboardingPersona = () => {
 
   return (
     <div className="mt-8">
-      <div className="grid grid-cols-2 gap-2 md:gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
         {personas.map((persona, index) => (
           <Card
             onClick={() => setSelectedPersona(persona.value)}
             key={index}
             className={cn(
-              "py-20 h-full cursor-pointer hover:bg-primary transition-all group",
+              "py-14 h-full cursor-pointer hover:bg-primary transition-all group",
               selectedPersona === persona.value &&
                 "bg-primary text-white hover:bg-primary/90"
             )}
@@ -80,7 +116,9 @@ export const OnboardingPersona = () => {
         ))}
       </div>
       <div className="flex items-center justify-start gap-2 mt-8">
-        <Button variant={"outline"}>Back</Button>
+        <Button onClick={() => router.push("/")} variant={"outline"}>
+          Skip
+        </Button>
         <Button onClick={handleSubmit} disabled={pending || !selectedPersona}>
           {pending ? <Loader /> : "Continue"}
         </Button>

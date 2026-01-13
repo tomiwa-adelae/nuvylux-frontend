@@ -11,7 +11,7 @@ export const AboutFinalCTA = () => {
         </h3>
         <p className="text-xl text-gray-400 mb-10">
           We welcome inquiries from global press, strategic investors, and
-          creative talents who align with the NUVYLUX vision.
+          creative talents who align with the Nuvylux vision.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center gap-4">

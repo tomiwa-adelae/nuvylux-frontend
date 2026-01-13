@@ -96,7 +96,7 @@ export const CuratedShop = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 gap-y-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-2 gap-y-4">
           {products.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
@@ -152,17 +152,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="text-sm space-y-1">
         <Link
           href={"/"}
-          className="text-base md:text-lg font-semibold text-primary hover:underline transition-all"
+          className="text-base lg:text-lg font-semibold text-primary hover:underline transition-all"
         >
           {name}
         </Link>
-        <p className="text-xs md:text-sm text-muted-foreground">
+        <p className="text-xs lg:text-sm text-muted-foreground">
           By{" "}
           <Link href={`/creator/${creator}`} className="hover:underline">
             {creator}
           </Link>
         </p>
-        <p className="text-lg md:text-xl font-bold mt-2">
+        <p className="text-lg lg:text-xl font-bold mt-2">
           ${price.toFixed(category.includes("NFT") ? 2 : 2)}
         </p>
       </div>

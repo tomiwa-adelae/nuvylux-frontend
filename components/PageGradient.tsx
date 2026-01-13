@@ -2,7 +2,7 @@ import React from "react";
 
 export const PageGradient = () => {
   return (
-    <div className="min-h-screen h-full w-full absolute top-0 -z-10 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950">
+    <div className="min-h-screen h-full w-full absolute top-0 -z-10 bg-gradient-to-br from-green-50 via-white to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-green-950">
       {/* Dashed Top Left Fade Grid */}
       <div
         className="absolute inset-0 z-0 [background-image:linear-gradient(to_right,#e7e5e4_1px,transparent_1px),linear-gradient(to_bottom,#e7e5e4_1px,transparent_1px)] dark:[background-image:linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)]"

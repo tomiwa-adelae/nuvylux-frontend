@@ -6,30 +6,6 @@ import Link from "next/link";
 import { teamMembers } from "@/constants";
 
 export const TeamSection = () => {
-  const leadership = [
-    {
-      name: "Hannah Chika Diei",
-      title: "Founder & CEO",
-      bio: "A visionary leader fusing African culture with cutting-edge technology to redefine modern luxury and entrepreneurship.",
-      photo: "/assets/team/hannah-diei.jpg", // Replace with high-quality photo
-      email: "hannah@nuvylux.com",
-    },
-    {
-      name: "Dr. Evelyn Okoro",
-      title: "Chief Technology Officer (CTO)",
-      bio: "Leads Auranova Labs, specializing in AI, computer vision, and scalable platform architecture.",
-      photo: "/assets/team/evelyn-okoro.jpg",
-      email: "evelyn@auranova.group",
-    },
-    {
-      name: "Tariq Hassan",
-      title: "Chief Marketing Officer (CMO)",
-      bio: "Drives brand narrative, global campaigns, and creative strategy across all NUVYLUX divisions and the Agency.",
-      photo: "/assets/team/tariq-hassan.jpg",
-      email: "tariq@nuvylux.com",
-    },
-  ];
-
   return (
     <section id="team" className="py-16 bg-secondary">
       <div className="container mx-auto px-6">

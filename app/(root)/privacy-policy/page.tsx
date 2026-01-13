@@ -4,7 +4,7 @@ const page = () => {
   return (
     <div>
       <div className="container py-10">
-        <PageHeader title="NUVYLUX Privacy Policy" />
+        <PageHeader title="Nuvylux Privacy Policy" />
 
         {/* --- START OF PRIVACY POLICY CONTENT --- */}
         <div className="prose max-w-none text-sm lg:prose-lg mt-6 space-y-4 text-muted-foreground">
@@ -18,7 +18,7 @@ const page = () => {
             </p>
             <p>
               <strong className="text-black dark:text-white">Entity:</strong>{" "}
-              NUVYLUX
+              Nuvylux
             </p>
             <p>
               <strong className="text-black dark:text-white">
@@ -34,18 +34,18 @@ const page = () => {
               1. Introduction
             </h2>
             <p>
-              NUVYLUX (“we”, “our”, or “us”) is a digital luxury and innovation
+              Nuvylux (“we”, “our”, or “us”) is a digital luxury and innovation
               platform built for beauty, fashion, and creative professionals,
               brands, and enthusiasts.
             </p>
             <p>
-              This Privacy Policy explains how NUVYLUX collects, uses, stores,
-              protects, and shares information when users access the NUVYLUX
+              This Privacy Policy explains how Nuvylux collects, uses, stores,
+              protects, and shares information when users access the Nuvylux
               website, create accounts, engage with platform features, or
-              interact with NUVYLUX services.
+              interact with Nuvylux services.
             </p>
             <p>
-              By accessing or using NUVYLUX, you agree to the practices
+              By accessing or using Nuvylux, you agree to the practices
               described in this Policy.
             </p>
           </div>
@@ -112,7 +112,7 @@ const page = () => {
             <h2 className="font-medium text-lg md:text-xl mb-1 text-black dark:text-white">
               3. How We Use Your Information
             </h2>
-            <p>NUVYLUX uses collected data for the following purposes:</p>
+            <p>Nuvylux uses collected data for the following purposes:</p>
 
             <h3 className="font-medium mt-4 text-black dark:text-white">
               3.1 Platform Operations
@@ -156,7 +156,7 @@ const page = () => {
             <ul className="list-disc list-inside space-y-1 ml-4">
               <li>Comply with legal obligations</li>
               <li>Enforce platform policies</li>
-              <li>Protect NUVYLUX and users from abuse</li>
+              <li>Protect Nuvylux and users from abuse</li>
             </ul>
           </div>
 
@@ -166,7 +166,7 @@ const page = () => {
               4. Third-Party Service Providers
             </h2>
             <p>
-              NUVYLUX works with trusted third-party providers to support
+              Nuvylux works with trusted third-party providers to support
               platform operations.
             </p>
             <ul className="list-disc list-inside space-y-1 ml-4">
@@ -175,7 +175,7 @@ const page = () => {
               <li>Payment processors</li>
               <li>Email and communication services</li>
             </ul>
-            <p>NUVYLUX does not sell, rent, or trade personal data.</p>
+            <p>Nuvylux does not sell, rent, or trade personal data.</p>
           </div>
 
           {/* 5. Data Retention */}
@@ -214,7 +214,7 @@ const page = () => {
               7. Cookies & Tracking
             </h2>
             <p>
-              NUVYLUX uses cookies for functionality, analytics, and user
+              Nuvylux uses cookies for functionality, analytics, and user
               experience improvement.
             </p>
             <p>Users may manage cookie preferences via browser settings.</p>
@@ -236,7 +236,7 @@ const page = () => {
             <h2 className="font-medium text-lg md:text-xl mb-1 text-black dark:text-white">
               9. Children’s Privacy
             </h2>
-            <p>NUVYLUX is not intended for individuals under the age of 13.</p>
+            <p>Nuvylux is not intended for individuals under the age of 13.</p>
             <p>
               We do not knowingly collect personal information from children.
             </p>
@@ -248,7 +248,7 @@ const page = () => {
               10. Changes to This Policy
             </h2>
             <p>
-              NUVYLUX may update this Privacy Policy periodically. Continued use
+              Nuvylux may update this Privacy Policy periodically. Continued use
               of the platform constitutes acceptance of the updated policy.
             </p>
           </div>
@@ -259,7 +259,7 @@ const page = () => {
               11. Contact Information
             </h2>
             <p>If you have questions about this Privacy Policy, contact:</p>
-            <p>NUVYLUX</p>
+            <p>Nuvylux</p>
             <p>
               Email:{" "}
               <a

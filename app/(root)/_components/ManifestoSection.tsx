@@ -14,14 +14,14 @@ export const ManifestoSection = () => {
         {/* The Core Manifesto Text */}
         <div className="text-xl text-gray-700 leading-relaxed space-y-6">
           <p>
-            "I created NUVYLUX because I've always believed that luxury is more
+            "I created Nuvylux because I've always believed that luxury is more
             than appearance, it’s transformation. I saw a world where beauty,
             fashion, and innovation often walked separate paths, and I wanted to
             merge them, to create something that reflects the brilliance of
             modern Africa and the boundless power of new ideas."
           </p>
           <p>
-            "NUVYLUX was born from that vision, a name that means the new light
+            "Nuvylux was born from that vision, a name that means the new light
             of luxury. A movement that redefines what elegance looks like in the
             digital age. A brand that speaks of innovation, culture, and
             purpose."

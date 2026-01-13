@@ -26,3 +26,37 @@ export const formatTime = (seconds: number) => {
   const s = seconds % 60;
   return `${m}:${s.toString().padStart(2, "0")}`;
 };
+
+export const base64ToFile = (base64String: string, filename: string): File => {
+  const parts = base64String.split(",");
+  const mime = parts[0].match(/:(.*?);/)?.[1] || "image/png";
+  const bstr = atob(parts[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new File([u8arr], filename, { type: mime });
+};
+
+export const formatMoneyInput = (inputValue: string | number) => {
+  if (inputValue == null) return "";
+
+  let value = String(inputValue);
+
+  // Allow spaces in text — don't format unless it's a pure number
+  const numericOnly = value.replace(/,/g, ""); // remove commas to check
+
+  if (!/^\d+(\.\d+)?$/.test(numericOnly)) {
+    // Not a number → return raw text
+    return value;
+  }
+
+  // Split whole and decimal
+  let [whole, decimal] = numericOnly.split(".");
+
+  // Add commas to whole number
+  whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return decimal !== undefined ? `${whole}.${decimal}` : whole;
+};

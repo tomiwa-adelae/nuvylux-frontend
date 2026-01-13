@@ -156,6 +156,88 @@ export const OnboardingProfileFormSchema = z.object({
     .or(z.literal("")), // allow blank but treat as invalid
 });
 
+export const BrandOnboardingFormSchema = z.object({
+  brandName: z.string().min(2, {
+    message: "Brand name must be at least 2 characters.",
+  }),
+  brandType: z.string().min(2, {
+    message: "Brand type must be selected.",
+  }),
+  description: z.string().optional(),
+  brandLogo: z.string().optional(),
+  brandColor: z.string().min(4).max(9).default("#2D7EF1"),
+  website: z.string().url().optional().or(z.literal("")),
+  socialLinks: z
+    .array(
+      z.object({
+        url: z.string().url({ message: "Please enter a valid URL" }),
+      })
+    )
+    .optional(), // makes the whole field optional
+});
+
+export const AddProductFormSchema = z.object({
+  name: z.string().min(2, "Name is required"),
+  category: z.string().min(1, "Category is required"),
+  brandId: z.string().min(1, "Brand is required"),
+
+  // Pricing
+  price: z.string().min(1, "Price is required"),
+  compareAtPrice: z.string().optional(), // For "Sale" price display
+
+  // Inventory
+  sku: z.string().min(1, "SKU is required"),
+  stock: z.string().min(1, "Stock quantity is required"),
+  status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("DRAFT"),
+
+  // Content
+  shortDescription: z.string().max(160, "Keep it short for SEO"),
+  description: z.string().min(10, "Description is required"),
+
+  // Media
+  thumbnail: z.string().min(1, "Thumbnail is required"),
+
+  // Variants
+  availableColors: z.array(z.any()).optional(),
+  sizes: z.array(z.string()).optional(),
+
+  // Meta
+  // isFeatured: z.boolean().default(false),
+  images: z
+    .array(z.string())
+    .min(1, "At least one gallery image is required")
+    .max(5, "You can only upload up to 5 images"),
+});
+
+// export const AddProductFormSchema = z.object({
+//   name: z.string().min(2, {
+//     message: "Name must be at least 2 characters.",
+//   }),
+//   category: z.string().min(2, {
+//     message: "Category must be selected.",
+//   }),
+//   shortDescription: z.string().optional(),
+//   description: z.string().min(2, {
+//     message: "Description is required.",
+//   }),
+//   brandId: z.string().min(2, { message: "Brand is required" }),
+//   price: z
+//     .string()
+//     .min(2, {
+//       message: "Price must be at least 1000 naira.",
+//     })
+//     .regex(/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/, "Invalid price format"),
+//   currency: z.enum(["NGN", "USD", "EUR", "GBP"]).default("NGN"),
+//   stock: z.string().optional(),
+//   images: z.any().optional(),
+//   thumbnail: z.any(),
+//   availableColors: z.any(),
+//   sizes: z.array(z.string()).min(1, {
+//     message: "Please select at least one size.",
+//   }),
+// });
+
+export type AddProductFormSchemaType = z.infer<typeof AddProductFormSchema>;
 export type LoginFormSchemaType = z.infer<typeof LoginFormSchema>;
 export type RegisterFormSchemaType = z.infer<typeof RegisterFormSchema>;
 export type ContactFormSchemaType = z.infer<typeof contactFormSchema>;
@@ -169,4 +251,7 @@ export type VerifyCodeSchemaType = z.infer<typeof VerifyCodeSchema>;
 export type NewPasswordSchemaType = z.infer<typeof NewPasswordSchema>;
 export type OnboardingProfileFormSchemaType = z.infer<
   typeof OnboardingProfileFormSchema
+>;
+export type BrandOnboardingFormSchemaType = z.infer<
+  typeof BrandOnboardingFormSchema
 >;

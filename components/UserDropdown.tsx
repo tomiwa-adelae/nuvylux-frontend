@@ -39,7 +39,7 @@ export function UserDropdown() {
               src={user?.image || DEFAULT_PROFILE_IMAGE}
               alt={`${user?.firstName}'s picture` || ""}
             />
-            <AvatarFallback>NUVYLUX</AvatarFallback>
+            <AvatarFallback>Nuvylux</AvatarFallback>
           </Avatar>
           <ChevronDownIcon
             size={16}

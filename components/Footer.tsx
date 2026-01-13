@@ -53,7 +53,7 @@ export const Footer = () => {
               href="/"
               className="font-serif text-2xl font-bold text-white tracking-widest hover:text-primary transition-colors"
             >
-              NUVYLUX
+              Nuvylux
             </Link>
             <p className="text-sm mt-3 text-gray-500">
               The New Light of Luxury.

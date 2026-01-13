@@ -17,7 +17,7 @@ export const useSignout = () => {
     } finally {
       useAuth.getState().clearUser();
       localStorage.removeItem("lastVisitedPath"); // 🔹 clear last page
-      router.push("/?logout=true");
+      router.push("/login?logout=true");
     }
   };
 

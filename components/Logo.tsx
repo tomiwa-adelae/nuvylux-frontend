@@ -22,16 +22,31 @@ export const Logo = ({ color = "white" }: { color: "white" | "black" }) => {
     >
       <Image
         src="/assets/images/logo.jpg"
-        alt="NUVYLUX"
+        alt="Nuvylux"
         width={120}
         height={40}
         className="h-10 w-auto object-contain"
         priority
       />
       <p className="text-base md:text-xl flex items-start justify-start flex-col">
-        <span className={`${playfair.className} font-bold`}>NUVYLUX</span>{" "}
+        <span className={`font-bold`}>NUVYLUX</span>{" "}
         <span className="text-xs">FASHION AGENCY</span>
       </p>
+    </Link>
+  );
+};
+
+export const SmallLogo = () => {
+  return (
+    <Link href="/">
+      <Image
+        src="/assets/images/logo.jpg"
+        alt="Nuvylux"
+        width={120}
+        height={40}
+        className="h-10 w-auto object-contain"
+        priority
+      />
     </Link>
   );
 };

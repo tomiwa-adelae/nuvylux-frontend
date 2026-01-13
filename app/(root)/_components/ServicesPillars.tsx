@@ -22,13 +22,13 @@ export const ServicesPillars = () => {
     <section id="pillars" className="py-12 bg-gray-50">
       <div className="container">
         <h2 className="font-semibold text-2xl md:text-3xl 2xl:text-4xl text-primary text-center mb-8">
-          The NUVYLUX Core Capabilities
+          The Nuvylux Core Capabilities
         </h2>
         <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
           {/* Pillar 1: BeautyTech */}
           <ServicePillarCard
             icon={IconHeart}
-            title="NUVYLUX BeautyTech Services"
+            title="Nuvylux BeautyTech Services"
             valueStatement="Personalized beauty powered by technology and data."
             includes={[
               "AI skin analysis & beauty profiling",
@@ -50,7 +50,7 @@ export const ServicesPillars = () => {
           {/* Pillar 2: Fashion */}
           <ServicePillarCard
             icon={IconShoppingBag}
-            title="NUVYLUX Fashion Services"
+            title="Nuvylux Fashion Services"
             valueStatement="Fashion as identity, expression, and innovation."
             includes={[
               "Digital-first fashion collections",
@@ -68,7 +68,7 @@ export const ServicesPillars = () => {
           {/* Pillar 3: Academy */}
           <ServicePillarCard
             icon={IconSchool}
-            title="NUVYLUX Academy"
+            title="Nuvylux Academy"
             valueStatement="We don’t just teach skills — we build futures."
             includes={[
               "Beauty & fashion masterclasses",
@@ -86,7 +86,7 @@ export const ServicesPillars = () => {
           {/* Pillar 4: Studio */}
           <ServicePillarCard
             icon={IconDeviceLaptop}
-            title="NUVYLUX Studio"
+            title="Nuvylux Studio"
             valueStatement="Visual storytelling with cultural depth and global appeal."
             includes={[
               "Editorial shoots and Brand campaigns",
@@ -108,7 +108,7 @@ export const ServicesPillars = () => {
           {/* Pillar 5: Labs */}
           <ServicePillarCard
             icon={IconBulb}
-            title="NUVYLUX Labs"
+            title="Nuvylux Labs"
             valueStatement="Designing the future before it exists."
             includes={[
               "AI beauty & fashion tool development",
@@ -118,7 +118,7 @@ export const ServicesPillars = () => {
             ]}
             ctas={[
               { label: "Learn About Labs", href: "/labs", primary: true },
-              { label: "Partner with NUVYLUX", href: "/labs/partner" },
+              { label: "Partner with Nuvylux", href: "/labs/partner" },
             ]}
             imagePlaceholder=""
           />

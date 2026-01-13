@@ -20,7 +20,7 @@ export const ServicesHero = () => {
           Services Designed to Illuminate Beauty, Fashion & Innovation.
         </h1>
         <p className="text-gray-100 text-base mt-2 max-w-3xl mx-auto">
-          NUVYLUX delivers premium, technology-driven services for creators,
+          Nuvylux delivers premium, technology-driven services for creators,
           brands, and modern consumers shaping the future of luxury.
         </p>
         <div className="mt-10 space-x-4">

@@ -14,7 +14,7 @@ export const AboutTeaser = () => {
             {/* Replace with a high-quality, editorial image. Consider a photo of the founder, a diverse team shot, or an abstract luxury-tech visual. */}
             <Image
               src="/assets/images/ceo.jpg" // Make sure this path is correct
-              alt="NUVYLUX Founder Vision"
+              alt="Nuvylux Founder Vision"
               layout="fill"
               objectFit="cover"
               className="transition-transform duration-500 hover:scale-105" // Subtle hover effect
@@ -29,7 +29,7 @@ export const AboutTeaser = () => {
               Redefining Luxury with <br /> Vision & Purpose.
             </h2>
             <p className="text-lg text-gray-700 mb-6 max-w-xl mx-auto lg:mx-0">
-              "I created NUVYLUX because I believe luxury is more than
+              "I created Nuvylux because I believe luxury is more than
               appearance; it’s transformation. It’s a movement that redefines
               elegance in the digital age, blending artistry, culture, and
               technology."

@@ -19,7 +19,7 @@ export const Showcase = () => {
           Redefining Beauty, Fashion & Innovation.
         </h1>
         <p className="text-gray-100 text-base mt-2">
-          NUVYLUX is a visionary house blending artistry, culture, and
+          Nuvylux is a visionary house blending artistry, culture, and
           technology to illuminate a new era of elegance
         </p>
         <div className="flex items-center mt-4 justify-center gap-2">

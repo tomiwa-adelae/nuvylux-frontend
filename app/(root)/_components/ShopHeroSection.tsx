@@ -17,7 +17,7 @@ export const ShopHeroSection = () => {
       <div className="absolute inset-0 bg-black/50 pointer-events-none" />
       <div className="container text-center py-16 z-10 relative">
         <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-1">
-          The NUVYLUX Marketplace
+          The Nuvylux Marketplace
         </h1>
         <p className="text-gray-100 text-base lg:text-lg mb-6 max-w-2xl mx-auto">
           Discover the convergence of digital innovation and luxury living.

@@ -4,7 +4,7 @@ const page = () => {
   return (
     <div>
       <div className="container py-16">
-        <PageHeader title="NUVYLUX Terms of Service" />
+        <PageHeader title="Nuvylux Terms of Service" />
 
         <div className="prose max-w-none text-sm lg:prose-lg mt-6 space-y-4 text-muted-foreground">
           <div className="text-sm italic grid gap-1 mb-6">
@@ -16,7 +16,7 @@ const page = () => {
             </p>
             <p>
               <strong className="text-black dark:text-white">Entity:</strong>{" "}
-              NUVYLUX
+              Nuvylux
             </p>
             <p>
               <strong className="text-black dark:text-white">
@@ -32,17 +32,17 @@ const page = () => {
               1. Introduction & Agreement
             </h2>
             <p>
-              Welcome to NUVYLUX (“we”, “our”, or “us”). NUVYLUX is a
+              Welcome to Nuvylux (“we”, “our”, or “us”). Nuvylux is a
               digital-first luxury ecosystem operating across beauty, fashion,
               technology, education, and creative services.
             </p>
             <p>
               These Terms of Service (“Terms”) govern your access to and use of
-              all NUVYLUX platforms, websites, applications, tools, digital
+              all Nuvylux platforms, websites, applications, tools, digital
               products, content, services, and community features.
             </p>
             <p>
-              By creating an account or using any part of NUVYLUX, you confirm
+              By creating an account or using any part of Nuvylux, you confirm
               that you have read, understood, and agreed to these Terms and our
               Privacy Policy.
             </p>
@@ -54,15 +54,15 @@ const page = () => {
               2. Definitions
             </h2>
             <ul className="list-disc list-inside ml-4 space-y-1">
-              <li>“User” – any individual or entity using NUVYLUX services.</li>
-              <li>“Account” – a registered NUVYLUX user profile.</li>
+              <li>“User” – any individual or entity using Nuvylux services.</li>
+              <li>“Account” – a registered Nuvylux user profile.</li>
               <li>
-                “Services” – all NUVYLUX platforms, tools, apps, courses,
+                “Services” – all Nuvylux platforms, tools, apps, courses,
                 marketplaces, AI features, and creative services.
               </li>
               <li>
                 “Content” – text, images, videos, designs, portfolios, posts,
-                and other materials uploaded or generated on NUVYLUX.
+                and other materials uploaded or generated on Nuvylux.
               </li>
               <li>
                 “Digital Products” – non-physical products including courses,
@@ -79,7 +79,7 @@ const page = () => {
             <ul className="list-disc list-inside ml-4 space-y-1">
               <li>You must be at least 16 years old</li>
               <li>Provide accurate and complete registration information</li>
-              <li>Use NUVYLUX only for lawful purposes</li>
+              <li>Use Nuvylux only for lawful purposes</li>
               <li>Not be suspended or banned from prior use</li>
             </ul>
           </div>
@@ -110,7 +110,7 @@ const page = () => {
               <li>Harass, exploit, or abuse other users</li>
               <li>Misuse AI tools or automate harmful actions</li>
               <li>Scrape, reverse engineer, or attack our systems</li>
-              <li>Use NUVYLUX for fraudulent or deceptive activities</li>
+              <li>Use Nuvylux for fraudulent or deceptive activities</li>
             </ul>
           </div>
 
@@ -121,7 +121,7 @@ const page = () => {
             </h2>
             <p>
               You retain ownership of your content. However, by uploading or
-              sharing content on NUVYLUX, you grant us a worldwide, royalty-free
+              sharing content on Nuvylux, you grant us a worldwide, royalty-free
               license to use, display, promote, and distribute such content in
               connection with our services.
             </p>
@@ -133,7 +133,7 @@ const page = () => {
               7. Payments & Subscriptions
             </h2>
             <p>
-              Certain NUVYLUX services may require payment. Payments are
+              Certain Nuvylux services may require payment. Payments are
               processed through third-party providers. All purchases of digital
               products and subscriptions are final unless stated otherwise.
             </p>
@@ -167,7 +167,7 @@ const page = () => {
               10. Disclaimer of Warranties
             </h2>
             <p>
-              NUVYLUX services are provided “as is” and “as available.” We do
+              Nuvylux services are provided “as is” and “as available.” We do
               not guarantee uninterrupted access or error-free performance.
             </p>
           </div>
@@ -178,7 +178,7 @@ const page = () => {
               11. Limitation of Liability
             </h2>
             <p>
-              To the fullest extent permitted by law, NUVYLUX shall not be
+              To the fullest extent permitted by law, Nuvylux shall not be
               liable for indirect, incidental, or consequential damages.
             </p>
           </div>
@@ -199,7 +199,7 @@ const page = () => {
             <h2 className="font-medium text-xl md:text-2xl text-black dark:text-white">
               13. Contact Information
             </h2>
-            <p>NUVYLUX</p>
+            <p>Nuvylux</p>
             <p>
               Email:{" "}
               <a

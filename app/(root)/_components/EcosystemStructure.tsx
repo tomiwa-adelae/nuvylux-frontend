@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 export const EcosystemStructure = () => {
   const divisions = [
     {
-      title: "NUVYLUX",
+      title: "Nuvylux",
       subtitle: "Flagship Luxury-Tech Brand",
       icon: LayoutGrid,
       color: "#2E8B57",
@@ -39,7 +39,7 @@ export const EcosystemStructure = () => {
           A Global Architecture: The AURANOVA Group
         </h3>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
-          NUVYLUX is the flagship luxury-tech brand operating within the broader
+          Nuvylux is the flagship luxury-tech brand operating within the broader
           AURANOVA GROUP ecosystem. This strategic structure ensures specialized
           focus, scalability, and innovation dominance across industries.
         </p>
@@ -75,7 +75,7 @@ export const EcosystemStructure = () => {
                   {division.subtitle}
                 </p>
                 <p className="text-gray-600 text-sm">
-                  {division.title === "NUVYLUX"
+                  {division.title === "Nuvylux"
                     ? "The consumer-facing platform for beauty, fashion, AI, and community."
                     : "Specialized divisions providing R&D, education, and brand strategy services."}
                 </p>

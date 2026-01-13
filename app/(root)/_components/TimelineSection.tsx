@@ -15,7 +15,7 @@ export const TimelineSection = () => {
       year: 2024,
       title: "Platform MVP Development",
       description:
-        "NUVYLUX App core architecture build (Next.js/Node.js) and initial creator partnership acquisitions.",
+        "Nuvylux App core architecture build (Next.js/Node.js) and initial creator partnership acquisitions.",
       icon: Zap,
       color: "text-primary", // Till Green
     },
@@ -23,7 +23,7 @@ export const TimelineSection = () => {
       year: "2026 (Launch)",
       title: "Marketplace & AI Integration",
       description:
-        "Public launch of the NUVYLUX Marketplace (MVP), Phase 1 AI Skin Analysis release, and Auranova Agency client acquisition.",
+        "Public launch of the Nuvylux Marketplace (MVP), Phase 1 AI Skin Analysis release, and Auranova Agency client acquisition.",
       icon: Rocket,
       color: "text-gray-900",
     },
@@ -31,7 +31,7 @@ export const TimelineSection = () => {
       year: "2 026+",
       title: "Global Scale & Academy",
       description:
-        "Expansion into secondary markets, launch of the NUVYLUX Fashion line, and formal launch of Auranova Academy.",
+        "Expansion into secondary markets, launch of the Nuvylux Fashion line, and formal launch of Auranova Academy.",
       icon: Users,
       color: "text-[#C0C0C0]", // Platinum Silver
     },

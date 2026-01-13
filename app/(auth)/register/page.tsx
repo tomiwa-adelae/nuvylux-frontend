@@ -9,7 +9,7 @@ const page = () => {
           <Logo color="black" />
         </div>
         <h1 className="text-3xl lg:text-4xl mb-4 font-medium text-center">
-          Create Your NUVYLUX Account
+          Create Your Nuvylux Account
         </h1>
         <RegisterForm />
       </div>
