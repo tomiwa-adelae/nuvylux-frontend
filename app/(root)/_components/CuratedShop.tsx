@@ -1,83 +1,45 @@
-import { Badge } from "@/components/ui/badge";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
-  IconGrid3x3,
   IconGridDots,
   IconList,
   IconSettings2,
+  IconLoader2,
 } from "@tabler/icons-react";
-import { Zap } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import { env } from "@/lib/env";
+import { Product } from "@/types";
+import { ProductCard } from "./ProductCard";
+import api from "@/lib/api";
 
 export const CuratedShop = () => {
-  // Placeholder data for demonstration
-  const products = [
-    {
-      id: 1,
-      name: "AI Precision Skincare Tool",
-      price: 299,
-      category: "BeautyTech",
-      creator: "NuvyLux Labs",
-      image: "/assets/images/product-1.jpg",
-    },
-    {
-      id: 2,
-      name: "Virtual Chrome Dress NFT",
-      price: 0.5,
-      category: "Digital Fashion",
-      creator: "Aisha K.",
-      image: "/assets/images/product-2.jpg",
-    },
-    {
-      id: 3,
-      name: "AI Precision Skincare Tool",
-      price: 299,
-      category: "BeautyTech",
-      creator: "NuvyLux Labs",
-      image: "/assets/images/product-1.jpg",
-    },
-    {
-      id: 4,
-      name: "Virtual Chrome Dress NFT",
-      price: 0.5,
-      category: "Digital Fashion",
-      creator: "Aisha K.",
-      image: "/assets/images/product-2.jpg",
-    },
-    {
-      id: 5,
-      name: "AI Precision Skincare Tool",
-      price: 299,
-      category: "BeautyTech",
-      creator: "NuvyLux Labs",
-      image: "/assets/images/product-1.jpg",
-    },
-    {
-      id: 6,
-      name: "Virtual Chrome Dress NFT",
-      price: 0.5,
-      category: "Digital Fashion",
-      creator: "Aisha K.",
-      image: "/assets/images/product-2.jpg",
-    },
-    {
-      id: 7,
-      name: "Virtual Chrome Dress NFT",
-      price: 0.5,
-      category: "Digital Fashion",
-      creator: "Aisha K.",
-      image: "/assets/images/product-2.jpg",
-    },
-  ];
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMarketplace = async () => {
+      try {
+        const res = await api(
+          `${env.NEXT_PUBLIC_BACKEND_URL}/products/public/all`
+        );
+
+        setProducts(res.data);
+      } catch (error) {
+        console.error("Failed to load marketplace", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMarketplace();
+  }, []);
+
   return (
     <section className="py-12">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-200 pb-4 mb-8">
-          <h2 className="font-semibold text-2xl md:text-3xl 2xl:text-4xl text-primary">
-            Curated Collection ({products.length})
+          <h2 className="font-semibold text-2xl md:text-3xl text-primary">
+            Curated Collection {products.length > 0 && `(${products.length})`}
           </h2>
           <div className="flex justify-between md:justify-end w-full md:w-auto items-center space-x-2">
             <Button variant={"ghost"}>
@@ -96,76 +58,26 @@ export const CuratedShop = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-2 gap-y-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <IconLoader2 className="animate-spin size-8 text-primary" />
+            <p className="mt-2 text-muted-foreground">Loading marketplace...</p>
+          </div>
+        ) : products?.length === 0 ? (
+          <div className="text-center py-20 bg-gray-50 rounded-lg">
+            <p className="text-gray-500">
+              No products found in the marketplace yet.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {products?.length !== 0 &&
+              products?.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+          </div>
+        )}
       </div>
     </section>
   );
 };
-
-/** 2. Reusable Product Card */
-interface ProductCardProps {
-  id: number;
-  name: string;
-  price: number;
-  category: string;
-  creator: string;
-  image: string;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({
-  name,
-  price,
-  category,
-  creator,
-  image,
-}) => (
-  <Card className="bg-transparent border-0 rounded-none shadow-none p-0 group gap-0 overflow-hidden">
-    <CardContent className="p-0">
-      {/* Image Placeholder */}
-      <div className="relative mb-4 overflow-hidden rounded-lg">
-        <Image
-          width={1000}
-          height={1000}
-          src={image}
-          alt={name}
-          className="aspect-square size-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <Button
-          variant={"ghost"}
-          size={"icon"}
-          className="absolute bottom-4 right-4 bg-white text-primary rounded-full shadow-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
-        >
-          <Zap className="w-5 h-5" />
-        </Button>
-        <Badge
-          variant={"secondary"}
-          className="text-xs absolute top-2 left-2 text-primary uppercase"
-        >
-          {category}
-        </Badge>
-      </div>
-
-      <div className="text-sm space-y-1">
-        <Link
-          href={"/"}
-          className="text-base lg:text-lg font-semibold text-primary hover:underline transition-all"
-        >
-          {name}
-        </Link>
-        <p className="text-xs lg:text-sm text-muted-foreground">
-          By{" "}
-          <Link href={`/creator/${creator}`} className="hover:underline">
-            {creator}
-          </Link>
-        </p>
-        <p className="text-lg lg:text-xl font-bold mt-2">
-          ${price.toFixed(category.includes("NFT") ? 2 : 2)}
-        </p>
-      </div>
-    </CardContent>
-  </Card>
-);

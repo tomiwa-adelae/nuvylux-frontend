@@ -25,19 +25,19 @@ export function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem
-          className="text-xs font-medium"
+          className="text-xs uppercase font-medium"
           onClick={() => setTheme("light")}
         >
           Light
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="text-xs font-medium"
+          className="text-xs uppercase font-medium"
           onClick={() => setTheme("dark")}
         >
           Dark
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="text-xs font-medium"
+          className="text-xs uppercase font-medium"
           onClick={() => setTheme("system")}
         >
           System

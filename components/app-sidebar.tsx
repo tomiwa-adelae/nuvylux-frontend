@@ -25,20 +25,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Logo, SmallLogo } from "./Logo";
+import { brandNavLinks, userNavLinks } from "@/constants";
+import { useAuth } from "@/store/useAuth";
 
 const sidebarData = {
-  user: {
-    name: "Luxury Brand Admin",
-    email: "admin@nuvylux.com",
-    avatar: "/avatars/brand-admin.jpg",
-  },
-  navMain: [
-    { title: "Dashboard", url: "/dashboard", icon: IconDashboard },
-    { title: "Inventory", url: "/dashboard/products", icon: IconPackage },
-    { title: "Analytics", url: "/dashboard/analytics", icon: IconChartBar },
-    { title: "AI Insights", url: "/dashboard/ai", icon: IconSparkles },
-    { title: "Customers", url: "/dashboard/customers", icon: IconUsers },
-  ],
   navSecondary: [
     { title: "Settings", url: "/dashboard/settings", icon: IconSettings },
     { title: "Get Help", url: "/dashboard/help", icon: IconHelp },
@@ -46,6 +36,7 @@ const sidebarData = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user } = useAuth();
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -72,11 +63,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={sidebarData.navMain} />
+        <NavMain
+          items={user && user?.role === "brand" ? brandNavLinks : userNavLinks}
+        />
         <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={sidebarData.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );

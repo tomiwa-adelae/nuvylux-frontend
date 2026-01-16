@@ -33,20 +33,132 @@ const COMMON_SIZES = [
   "45",
 ];
 
+// export function SizesSelector({
+//   initialSizes = [],
+//   onSizesChange,
+// }: SizesSelectorProps) {
+//   const [customSize, setCustomSize] = useState("");
+//   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+
+//   useEffect(() => {
+//     setSelectedSizes(initialSizes);
+//   }, [initialSizes]);
+
+//   const updateSizes = (next: string[]) => {
+//     setSelectedSizes(next);
+//     onSizesChange(next); // 🔑 notify RHF here only
+//   };
+
+//  const toggleSize = (size: string) => {
+//     updateSizes(
+//       selectedSizes.includes(size)
+//         ? selectedSizes.filter((s) => s !== size)
+//         : [...selectedSizes, size]
+//     );
+//   };
+
+//   const addCustomSize = (e: React.KeyboardEvent) => {
+//     if (e.key === "Enter" && customSize.trim()) {
+//       e.preventDefault();
+//       if (!selectedSizes.includes(customSize.trim())) {
+//         updateSizes([...selectedSizes, customSize.trim()]);
+//       }
+//       setCustomSize("");
+//     }
+//   };
+
+//   return (
+//     <div className="space-y-3">
+//       <FormLabel>Available Sizes</FormLabel>
+
+//       {/* Selection Area */}
+//       <div className="flex flex-wrap gap-2">
+//         {COMMON_SIZES.map((size) => {
+//           const isSelected = selectedSizes.includes(size);
+//           return (
+//             <Button
+//               key={size}
+//               type="button"
+//               variant={isSelected ? "default" : "outline"}
+//               size="sm"
+//               className="h-9 w-12"
+//               onClick={() => toggleSize(size)}
+//             >
+//               {size}
+//             </Button>
+//           );
+//         })}
+//       </div>
+
+//       {/* Custom Size Input */}
+//       <div className="flex items-center gap-2 max-w-[200px]">
+//         <Input
+//           placeholder="Custom size..."
+//           value={customSize}
+//           onChange={(e) => setCustomSize(e.target.value)}
+//           onKeyDown={addCustomSize}
+//           className="h-9"
+//         />
+//         <Button
+//           type="button"
+//           size="icon"
+//           className="h-9 w-9 shrink-0"
+//           onClick={() => {
+//             if (customSize.trim()) {
+//               setSelectedSizes([...selectedSizes, customSize.trim()]);
+//               setCustomSize("");
+//             }
+//           }}
+//         >
+//           <IconPlus size={16} />
+//         </Button>
+//       </div>
+
+//       {/* Selected Sizes Badges (Visible if custom sizes added) */}
+//       <div className="flex flex-wrap gap-2 mt-2">
+//         {selectedSizes
+//           .filter((s) => !COMMON_SIZES.includes(s))
+//           .map((size) => (
+//             <Badge
+//               key={size}
+//               variant="secondary"
+//               className="pl-2 pr-1 py-1 gap-1"
+//             >
+//               {size}
+//               <IconX
+//                 size={14}
+//                 className="cursor-pointer hover:text-destructive"
+//                 onClick={() => toggleSize(size)}
+//               />
+//             </Badge>
+//           ))}
+//       </div>
+//     </div>
+//   );
+// }
+
 export function SizesSelector({
   initialSizes = [],
   onSizesChange,
 }: SizesSelectorProps) {
-  const [selectedSizes, setSelectedSizes] = useState<string[]>(initialSizes);
   const [customSize, setCustomSize] = useState("");
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
 
+  // ✅ sync when editing an existing product
   useEffect(() => {
-    onSizesChange(selectedSizes);
-  }, [selectedSizes, onSizesChange]);
+    setSelectedSizes(initialSizes);
+  }, [initialSizes]);
+
+  const updateSizes = (next: string[]) => {
+    setSelectedSizes(next);
+    onSizesChange(next); // 🔑 notify RHF here only
+  };
 
   const toggleSize = (size: string) => {
-    setSelectedSizes((prev) =>
-      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+    updateSizes(
+      selectedSizes.includes(size)
+        ? selectedSizes.filter((s) => s !== size)
+        : [...selectedSizes, size]
     );
   };
 
@@ -54,7 +166,7 @@ export function SizesSelector({
     if (e.key === "Enter" && customSize.trim()) {
       e.preventDefault();
       if (!selectedSizes.includes(customSize.trim())) {
-        setSelectedSizes([...selectedSizes, customSize.trim()]);
+        updateSizes([...selectedSizes, customSize.trim()]);
       }
       setCustomSize("");
     }
@@ -64,7 +176,7 @@ export function SizesSelector({
     <div className="space-y-3">
       <FormLabel>Available Sizes</FormLabel>
 
-      {/* Selection Area */}
+      {/* Preset sizes */}
       <div className="flex flex-wrap gap-2">
         {COMMON_SIZES.map((size) => {
           const isSelected = selectedSizes.includes(size);
@@ -83,7 +195,7 @@ export function SizesSelector({
         })}
       </div>
 
-      {/* Custom Size Input */}
+      {/* Custom size input */}
       <div className="flex items-center gap-2 max-w-[200px]">
         <Input
           placeholder="Custom size..."
@@ -98,7 +210,7 @@ export function SizesSelector({
           className="h-9 w-9 shrink-0"
           onClick={() => {
             if (customSize.trim()) {
-              setSelectedSizes([...selectedSizes, customSize.trim()]);
+              updateSizes([...selectedSizes, customSize.trim()]);
               setCustomSize("");
             }
           }}
@@ -107,7 +219,7 @@ export function SizesSelector({
         </Button>
       </div>
 
-      {/* Selected Sizes Badges (Visible if custom sizes added) */}
+      {/* Custom sizes badges */}
       <div className="flex flex-wrap gap-2 mt-2">
         {selectedSizes
           .filter((s) => !COMMON_SIZES.includes(s))

@@ -16,14 +16,11 @@ import { useSignout } from "@/hooks/use-signout";
 import { useAuth } from "@/store/useAuth";
 import { IconBell, IconHeart, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { DEFAULT_PROFILE_IMAGE } from "@/constants";
 
 export function UserDropdown() {
-  const handleSignout = useSignout();
-  const router = useRouter();
-
   const { user } = useAuth();
+  const handleSignout = useSignout();
 
   if (!user) return null;
 
@@ -38,6 +35,7 @@ export function UserDropdown() {
             <AvatarImage
               src={user?.image || DEFAULT_PROFILE_IMAGE}
               alt={`${user?.firstName}'s picture` || ""}
+              className="size-full object-cover"
             />
             <AvatarFallback>Nuvylux</AvatarFallback>
           </Avatar>

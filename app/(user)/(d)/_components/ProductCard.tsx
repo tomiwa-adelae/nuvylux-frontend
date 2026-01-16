@@ -15,7 +15,6 @@ import {
 import Link from "next/link";
 
 export function ProductCard({ product }: { product: Product }) {
-  console.log(product);
   return (
     <Card className="p-0">
       <CardContent className="p-1.5">

@@ -209,34 +209,17 @@ export const AddProductFormSchema = z.object({
     .max(5, "You can only upload up to 5 images"),
 });
 
-// export const AddProductFormSchema = z.object({
-//   name: z.string().min(2, {
-//     message: "Name must be at least 2 characters.",
-//   }),
-//   category: z.string().min(2, {
-//     message: "Category must be selected.",
-//   }),
-//   shortDescription: z.string().optional(),
-//   description: z.string().min(2, {
-//     message: "Description is required.",
-//   }),
-//   brandId: z.string().min(2, { message: "Brand is required" }),
-//   price: z
-//     .string()
-//     .min(2, {
-//       message: "Price must be at least 1000 naira.",
-//     })
-//     .regex(/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/, "Invalid price format"),
-//   currency: z.enum(["NGN", "USD", "EUR", "GBP"]).default("NGN"),
-//   stock: z.string().optional(),
-//   images: z.any().optional(),
-//   thumbnail: z.any(),
-//   availableColors: z.any(),
-//   sizes: z.array(z.string()).min(1, {
-//     message: "Please select at least one size.",
-//   }),
-// });
+export const CheckoutFormSchema = z.object({
+  firstName: z.string().min(2, "First name is required"),
+  lastName: z.string().min(2, "Last name is required"),
+  phone: z.string().min(10, "Valid phone number is required"),
+  address: z.string().min(5, "Address is required"),
+  city: z.string().min(2, "City is required"),
+  state: z.string().min(2, "State is required"),
+  customerNote: z.string().optional(),
+});
 
+export type CheckoutFormSchemaType = z.infer<typeof CheckoutFormSchema>;
 export type AddProductFormSchemaType = z.infer<typeof AddProductFormSchema>;
 export type LoginFormSchemaType = z.infer<typeof LoginFormSchema>;
 export type RegisterFormSchemaType = z.infer<typeof RegisterFormSchema>;

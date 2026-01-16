@@ -30,7 +30,7 @@ export const Logo = ({ color = "white" }: { color: "white" | "black" }) => {
       />
       <p className="text-base md:text-xl flex items-start justify-start flex-col">
         <span className={`font-bold`}>NUVYLUX</span>{" "}
-        <span className="text-xs">FASHION AGENCY</span>
+        <span className="text-xs font-semibold">FASHION AGENCY</span>
       </p>
     </Link>
   );

@@ -504,33 +504,16 @@ export const AddProductForm = ({ brandId }: { brandId: string }) => {
                   </FormItem>
                 )}
               />
-              {/* <FormField
-                control={form.control}
-                name="isFeatured"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                    <div className="space-y-0.5">
-                      <FormLabel>Featured Product</FormLabel>
-                      <p className="text-xs text-muted-foreground text-pretty">
-                        Show on homepage hero
-                      </p>
-                    </div>
-                    <FormControl>
-                      <input
-                        type="checkbox"
-                        checked={field.value}
-                        onChange={field.onChange}
-                        className="h-4 w-4 rounded border-gray-300"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              /> */}
             </CardContent>
           </Card>
 
           <div className="flex justify-end gap-4">
-            <Button variant="outline" type="button" disabled={pending}>
+            <Button
+              onClick={() => router.back()}
+              variant="outline"
+              type="button"
+              disabled={pending}
+            >
               Cancel
             </Button>
             <Button type="submit" disabled={pending}>

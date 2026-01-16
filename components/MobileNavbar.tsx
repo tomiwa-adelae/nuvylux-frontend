@@ -12,16 +12,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { IconLogout, IconMenu2 } from "@tabler/icons-react";
+import { IconLogout, IconMenu2, IconMoon, IconSun } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Logo } from "./Logo";
 import { homeNavLinksMobile } from "@/constants/nav-links";
+import { useTheme } from "next-themes";
 
 export function MobileNavbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
 
   const handleLinkClick = () => {
     setOpen(false);
@@ -29,6 +31,10 @@ export function MobileNavbar() {
 
   const handleLogout = () => {
     setOpen(false);
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const isActive = (slug: string) =>
@@ -43,9 +49,21 @@ export function MobileNavbar() {
       </SheetTrigger>
       <SheetContent className="h-screen">
         <SheetHeader>
-          <Link href={"/"} className="flex items-center">
-            <Logo color={"black"} />
-          </Link>
+          <div className="flex items-center justify-between gap-2">
+            <Link href={"/"} className="flex items-center">
+              <Logo color={"black"} />
+            </Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="h-9 w-9"
+            >
+              <IconSun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+              <IconMoon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          </div>
         </SheetHeader>
         <ScrollArea className="overflow-y-auto">
           <div className="grid gap-1 container">

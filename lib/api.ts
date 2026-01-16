@@ -107,7 +107,7 @@ api.interceptors.response.use(
     ) {
       const { clearUser } = useAuth.getState();
       clearUser();
-      if (typeof window !== "undefined") window.location.assign("/");
+      if (typeof window !== "undefined") window.location.assign("/login");
     }
 
     return Promise.reject(error);
