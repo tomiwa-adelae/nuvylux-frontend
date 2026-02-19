@@ -29,21 +29,18 @@ export const ServicesGrid = () => {
 
   return (
     <section className="py-20 container">
-      <div className="flex justify-between items-end mb-10">
-        <div>
-          <h2 className="text-3xl font-serif">Featured Services</h2>
-          <p className="text-muted-foreground mt-2">
-            Expert-led architectural solutions for your next project.
-          </p>
-        </div>
-        <button className="text-sm font-bold uppercase tracking-widest border-b-2 border-black pb-1 hover:text-neutral-500 transition-colors">
-          View All
-        </button>
+      <div>
+        <h2 className="font-semibold text-2xl md:text-3xl 2xl:text-4xl text-primary text-center mb-2">
+          Featured Services
+        </h2>
+        <p className="text-base text-center text-muted-foreground mb-8">
+          Expert-led architectural solutions for your next project.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {loading
-          ? Array(3)
+          ? Array(5)
               .fill(0)
               .map((_, i) => <ServiceSkeleton key={i} />)
           : services

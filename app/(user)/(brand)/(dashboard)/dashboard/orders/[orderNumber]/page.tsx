@@ -19,7 +19,7 @@ import {
   IconLoader2,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import { TimelineItem } from "../../../_components/TimelineItem";
+import { TimelineItem } from "@/components/TimelineItem";
 import { CurrencyIcon } from "@/components/CurrencyIcon";
 
 // Extended type to include the brandSubtotal we added in the backend

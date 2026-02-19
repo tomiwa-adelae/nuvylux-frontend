@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "Read the Nuvylux Terms of Service. By using our platform, you agree to these terms governing your access to Nuvylux services, marketplace, and community.",
+  alternates: { canonical: "https://nuvylux.com/terms-of-service" },
+  robots: { index: true, follow: false },
+};
 
 const page = () => {
   return (

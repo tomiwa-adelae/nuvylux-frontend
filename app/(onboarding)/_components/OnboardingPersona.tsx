@@ -14,9 +14,12 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { toast } from "sonner";
+import { useAuth } from "@/store/useAuth";
 
 export const OnboardingPersona = () => {
   const router = useRouter();
+  const { user } = useAuth();
+  const setUser = useAuth((s) => s.setUser);
   const [selectedPersona, setSelectedPersona] = useState("");
   const [pending, startTransition] = useTransition();
 
@@ -81,6 +84,10 @@ export const OnboardingPersona = () => {
         });
 
         toast.success(res?.data?.message);
+        // Update user role in store (backend uppercases the role)
+        if (user) {
+          setUser({ ...user, role: selectedPersona.toUpperCase() });
+        }
         // Branching logic
         if (selectedPersona === "professional") {
           router.push("/onboarding/architect-details");

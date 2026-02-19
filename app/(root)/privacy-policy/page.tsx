@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "Read the Nuvylux Privacy Policy to understand how we collect, use, and protect your personal data when you use our platform.",
+  alternates: { canonical: "https://nuvylux.com/privacy-policy" },
+  robots: { index: true, follow: false },
+};
 
 const page = () => {
   return (

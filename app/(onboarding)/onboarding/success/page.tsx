@@ -13,23 +13,23 @@ const page = () => {
 
   const getRoleDestination = () => {
     switch (user?.role) {
-      case "professional":
+      case "PROFESSIONAL":
         return {
           href: "/dashboard/architect/services",
           label: "Set up your services",
         };
-      case "brand":
-      case "artisan":
+      case "BRAND":
+      case "ARTISAN":
         return {
-          href: "/dashboard/store/inventory",
-          label: "Manage your shop",
+          href: "/dashboard",
+          label: "Manage Dashboard",
         };
-      case "curator":
+      case "CURATOR":
         return {
           href: "/profile/setup-content",
           label: "Start creating",
         };
-      case "client":
+      case "CLIENT":
       default:
         return {
           href: "/explore",
@@ -53,7 +53,7 @@ const page = () => {
             </>
           }
           description={
-            user?.role === "client"
+            user?.role === "CLIENT"
               ? "Welcome to the community! Discover top-tier professionals and unique handmade products tailored for you."
               : "Your professional presence is live. Now, let's get your business tools ready so you can start earning."
           }
@@ -68,7 +68,7 @@ const page = () => {
           </Button>
 
           {/* Secondary action for Professionals/Brands to see the client view */}
-          {user?.role !== "client" && (
+          {user?.role !== "CLIENT" && (
             <Button variant="secondary" asChild>
               <Link href="/explore">View Marketplace</Link>
             </Button>

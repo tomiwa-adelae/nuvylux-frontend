@@ -27,10 +27,12 @@ import Link from "next/link";
 import Image from "next/image";
 import api from "@/lib/api";
 import { useAuth } from "@/store/useAuth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect");
 
   const setUser = useAuth((s) => s.setUser);
   const [pending, startTransition] = useTransition();
@@ -51,11 +53,24 @@ export const LoginForm = () => {
       try {
         const res = await api.post("/auth/login", data);
 
-        // Normal login (no 2FA required)
         setUser(res?.data?.user);
         toast.success(res?.data?.message);
 
-        // router.push("/dashboard");
+        const loggedInUser = res?.data?.user;
+        if (!loggedInUser?.onboardingCompleted) {
+          router.push("/onboarding");
+        } else if (redirectUrl) {
+          router.push(redirectUrl);
+        } else {
+          const role = loggedInUser?.role;
+          if (role === "ADMINISTRATOR") {
+            router.push("/admin");
+          } else if (role === "PROFESSIONAL" || role === "BRAND") {
+            router.push("/dashboard");
+          } else {
+            router.push("/explore");
+          }
+        }
       } catch (error: any) {
         toast.error(error?.response?.data?.message || "Internal server error");
       }

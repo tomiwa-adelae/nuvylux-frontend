@@ -200,3 +200,45 @@ export type Service = {
     user: User;
   };
 };
+
+export type BookingStatus = "PENDING" | "CONFIRMED" | "IN_PROGRESS" | "COMPLETED" | "CANCELLED";
+
+export type Booking = {
+  id: string;
+
+  bookingNumber: string;
+
+  userId: string;
+  clientId: string;
+
+  client: User;
+
+  serviceId: string;
+  service:
+    | {
+        name: string;
+        thumbnail: string;
+        price: string;
+        shortDescription: string;
+      }
+    | Service;
+
+  status: BookingStatus;
+
+  price: string; // base service price
+  serviceFee: string; // platform fee
+  totalAmount: string;
+
+  paymentStatus: PaymentStatus;
+  paymentMethod: string | null;
+  transactionRef: string | null;
+
+  requirements: string;
+  attachments: string[];
+
+  scheduledAt: string | null;
+  paidAt: string | null;
+
+  createdAt: string;
+  updatedAt: string;
+};

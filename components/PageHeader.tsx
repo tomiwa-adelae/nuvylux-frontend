@@ -10,7 +10,9 @@ interface PageHeaderProps {
   description?: string | any;
   action?: ReactNode;
   back?: boolean;
+  query?: string;
   badges?: string[];
+  fallbackHref?: string;
 }
 
 export function PageHeader({
@@ -19,18 +21,34 @@ export function PageHeader({
   action,
   back,
   badges,
+  query,
+  fallbackHref = "/",
 }: PageHeaderProps) {
   const router = useRouter();
+
+  const handleBack = () => {
+    if (typeof window !== "undefined" && window.history.length > 1) {
+      router.back();
+
+      if (query) {
+        // allow back navigation, then update query
+        setTimeout(() => {
+          const url = new URL(window.location.href);
+          url.searchParams.set(query, "true");
+          router.replace(url.pathname + url.search);
+        }, 0);
+      }
+    } else {
+      // no history → safe fallback
+      router.push(query ? `${fallbackHref}?${query}=true` : fallbackHref);
+    }
+  };
 
   return (
     <div className="mb-4">
       <div className="flex items-start justify-start gap-2">
         {back && (
-          <Button
-            onClick={() => router.back()}
-            size="icon"
-            variant={"secondary"}
-          >
+          <Button onClick={handleBack} size="icon" variant="secondary">
             <IconArrowLeft />
           </Button>
         )}

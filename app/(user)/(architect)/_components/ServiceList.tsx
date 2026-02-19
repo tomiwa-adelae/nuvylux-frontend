@@ -27,7 +27,7 @@ import { Button } from "@/components/ui/button";
 import { formatMoneyInput } from "@/lib/utils";
 import { CurrencyIcon } from "@/components/CurrencyIcon";
 
-export const ServiceList = ({ services, onUpdate }) => {
+export const ServiceList = ({ services, onUpdate }: { services: any[]; onUpdate: () => void }) => {
   return (
     // Grid layout to match product browsing
     <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-2">

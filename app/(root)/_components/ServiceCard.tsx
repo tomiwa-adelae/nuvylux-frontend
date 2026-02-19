@@ -27,8 +27,8 @@ export const ServiceCard = ({ service }: { service: Service }) => {
 
   return (
     <Card className="group transition-all p-0 border-none shadow-none hover:shadow-md rounded-2xl overflow-hidden">
-      <CardContent className="p-1.5 relative">
-        <div className="relative aspect-square overflow-hidden rounded-2xl bg-neutral-100">
+      <CardContent className="px-0 relative">
+        <div className="relative p-0 aspect-square overflow-hidden rounded-2xl bg-neutral-100">
           <Link
             href={`/services/${service.slug}`}
             className="block relative aspect-square overflow-hidden rounded-xl bg-gray-100"
@@ -57,7 +57,7 @@ export const ServiceCard = ({ service }: { service: Service }) => {
           </Badge>
         </div>
 
-        <div className="mt-3 space-y-3 px-1">
+        <div className="mt-3 space-y-3">
           <Link href={`/services/${service.slug}`}>
             <CardTitle className="font-semibold text-primary hover:underline truncate">
               {service.name}

@@ -294,9 +294,9 @@ export const ServiceSchema = z.object({
 
   price: z.string().min(1, "Price is required"),
 
-  pricingType: z.enum(["FIXED", "HOURLY"]).default("FIXED"),
+  pricingType: z.enum(["FIXED", "HOURLY"]),
 
-  currency: z.enum(["NGN", "USD", "EUR", "GBP"]).default("NGN"),
+  currency: z.enum(["NGN", "USD", "EUR", "GBP"]),
 
   type: z.enum(["CONSULTATION", "DELIVERABLE", "PROJECT"]),
 
@@ -313,13 +313,21 @@ export const ServiceSchema = z.object({
   cancellationPolicy: z.string().optional(),
   bookingRules: z.string().optional(),
 
-  status: z.enum(["DRAFT", "ACTIVE", "PAUSED"]).default("DRAFT"),
+  status: z.enum(["DRAFT", "ACTIVE", "PAUSED"]).optional(),
 
   thumbnail: z.string().min(1, "Please upload a cover image"),
 
   images: z.array(z.string()).max(6, "Maximum 6 gallery images"),
 });
 
+export const BookingServiceSchema = z.object({
+  date: z.string().optional(),
+  time: z.string().optional(),
+  requirements: z.string().optional(),
+  images: z.array(z.instanceof(File)).max(6, "Maximum 6 files").optional(),
+});
+
+export type BookingServiceSchemaType = z.infer<typeof BookingServiceSchema>;
 export type ServiceSchemaType = z.infer<typeof ServiceSchema>;
 export type ChangePasswordSchemaType = z.infer<typeof ChangePasswordSchema>;
 export type CheckoutFormSchemaType = z.infer<typeof CheckoutFormSchema>;
@@ -344,4 +352,5 @@ export type BrandOnboardingFormSchemaType = z.infer<
 export type BasicInformationFormSchemaType = z.infer<
   typeof BasicInformationFormSchema
 >;
+
 export type ArchitectSchemaType = z.infer<typeof ArchitectSchema>;

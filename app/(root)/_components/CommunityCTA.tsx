@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export const CommunityCTA = () => {
   return (
-    <section className="py-20 bg-[#2E8B57]">
+    <section className="py-20 bg-primary">
       {" "}
       {/* Till Green background for maximum visual impact */}
       <div className="container text-center">

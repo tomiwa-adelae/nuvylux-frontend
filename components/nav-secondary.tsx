@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Badge } from "./ui/badge";
 
 export function NavSecondary({
   items,
@@ -21,6 +22,7 @@ export function NavSecondary({
     title: string;
     url: string;
     icon: Icon;
+    comingSoon?: boolean;
   }[];
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   const pathname = usePathname();
@@ -32,21 +34,37 @@ export function NavSecondary({
           {items.map((item) => {
             const isActive =
               pathname === item.url || pathname.startsWith(`${item.url}/`);
-            const IconComponent = item.icon;
             return (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton
-                  className={cn(
-                    isActive &&
-                      "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
-                  )}
-                  asChild
-                >
-                  <a href={item.url}>
+                {item.comingSoon ? (
+                  <SidebarMenuButton
+                    className={cn(
+                      isActive &&
+                        "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+                      item.comingSoon && "opacity-50 cursor-not-allowed",
+                    )}
+                  >
                     <item.icon />
-                    <span>{item.title}</span>
-                  </a>
-                </SidebarMenuButton>
+                    <span>{item.title}</span>{" "}
+                    <Badge variant="secondary" className="ml-auto">
+                      Soon
+                    </Badge>
+                  </SidebarMenuButton>
+                ) : (
+                  <SidebarMenuButton
+                    className={cn(
+                      isActive &&
+                        "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+                      item.comingSoon && "opacity-50 cursor-not-allowed",
+                    )}
+                    asChild
+                  >
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                )}
               </SidebarMenuItem>
             );
           })}

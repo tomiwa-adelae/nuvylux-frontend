@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Explore",
+  description:
+    "Explore the full Nuvylux catalogue — search beauty products, fashion items, and creator collections all in one place.",
+  alternates: { canonical: "https://nuvylux.com/explore" },
+  openGraph: {
+    title: "Explore Nuvylux",
+    description: "Search and discover beauty products, fashion, and verified creator collections.",
+    url: "https://nuvylux.com/explore",
+    images: [{ url: "/assets/images/marketplace-img.jpg", width: 1200, height: 630, alt: "Explore Nuvylux" }],
+  },
+};
 import { Input } from "@/components/ui/input";
 import { IconSearch } from "@tabler/icons-react";
 import React from "react";

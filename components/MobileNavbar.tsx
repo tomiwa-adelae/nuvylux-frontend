@@ -116,10 +116,10 @@ export function MobileNavbar() {
               <div>
                 <Separator className="my-4" />
                 <p className="px-4 mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                  {user.role === "brand" ? "Brand Dashboard" : "Account"}
+                  {user.role === "BRAND" ? "Brand Dashboard" : "Account"}
                 </p>
                 {renderNavLinks(
-                  user?.role === "brand" ? brandNavLinks : userNavLinks
+                  user?.role === "BRAND" ? brandNavLinks : userNavLinks
                 )}
               </div>
             )}

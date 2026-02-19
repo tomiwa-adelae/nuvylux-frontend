@@ -231,6 +231,11 @@ export const userNavLinks: NavLinkProps[] = [
     icon: IconFolder,
   },
   {
+    label: "Bookings",
+    slug: "/bookings",
+    icon: IconCalendar,
+  },
+  {
     label: "Saved",
     slug: "/saved",
     icon: IconHeart,
@@ -252,5 +257,48 @@ export const architectNavLinks: NavLinkProps[] = [
     label: "Services",
     slug: "/dashboard/services",
     icon: IconFolder,
+  },
+  {
+    label: "Bookings",
+    slug: "/dashboard/bookings",
+    icon: IconCalendar,
+  },
+];
+
+export const adminNavLinks: NavLinkProps[] = [
+  {
+    label: "Overview",
+    slug: "/admin",
+    icon: IconHome,
+  },
+  {
+    label: "Users",
+    slug: "/admin/users",
+    icon: IconUsers,
+  },
+  {
+    label: "Orders",
+    slug: "/admin/orders",
+    icon: IconShoppingBag,
+  },
+  {
+    label: "Bookings",
+    slug: "/admin/bookings",
+    icon: IconCalendar,
+  },
+  {
+    label: "Products",
+    slug: "/admin/products",
+    icon: IconBox,
+  },
+  {
+    label: "Services",
+    slug: "/admin/services",
+    icon: IconBriefcase,
+  },
+  {
+    label: "Admin Team",
+    slug: "/admin/team",
+    icon: IconShield,
   },
 ];

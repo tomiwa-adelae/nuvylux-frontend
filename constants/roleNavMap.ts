@@ -1,10 +1,22 @@
 // constants/roleNavMap.ts
-import { architectNavLinks, brandNavLinks, userNavLinks } from "@/constants";
+import {
+  adminNavLinks,
+  architectNavLinks,
+  brandNavLinks,
+  userNavLinks,
+} from "@/constants";
 
-export type UserRole = "brand" | "professional" | "user";
+export type UserRole =
+  | "ADMINISTRATOR"
+  | "ARTISAN"
+  | "BRAND"
+  | "PROFESSIONAL"
+  | "USER";
 
 export const roleNavMap: Record<UserRole, typeof userNavLinks> = {
-  brand: brandNavLinks,
-  professional: architectNavLinks,
-  user: userNavLinks,
+  ADMINISTRATOR: adminNavLinks,
+  BRAND: brandNavLinks,
+  PROFESSIONAL: architectNavLinks,
+  USER: userNavLinks,
+  ARTISAN: architectNavLinks,
 };

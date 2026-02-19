@@ -27,6 +27,7 @@ import {
 import { DEFAULT_PROFILE_IMAGE } from "@/constants";
 import { useAuth } from "@/store/useAuth";
 import { useSignout } from "@/hooks/use-signout";
+import { Badge } from "./ui/badge";
 
 export function NavUser() {
   const { user } = useAuth();
@@ -89,17 +90,26 @@ export function NavUser() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem disabled>
                 <IconUserCircle />
-                Account
+                Account{" "}
+                <Badge variant="secondary" className="ml-auto">
+                  Soon
+                </Badge>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem disabled>
                 <IconCreditCard />
-                Billing
+                Billing{" "}
+                <Badge variant="secondary" className="ml-auto">
+                  Soon
+                </Badge>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem disabled>
                 <IconNotification />
-                Notifications
+                Notifications{" "}
+                <Badge variant="secondary" className="ml-auto">
+                  Soon
+                </Badge>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

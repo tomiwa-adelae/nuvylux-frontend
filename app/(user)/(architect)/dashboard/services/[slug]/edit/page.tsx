@@ -158,7 +158,7 @@ const page = () => {
         formData.append("deliveryMode", data.deliveryMode);
         formData.append("currency", data.currency);
         formData.append("price", data.price);
-        formData.append("status", data.status);
+        formData.append("status", data.status || "DRAFT");
         formData.append("pricingType", data.pricingType);
 
         if (data.duration) {

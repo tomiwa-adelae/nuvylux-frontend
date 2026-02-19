@@ -30,7 +30,7 @@ const page = () => {
 
   useEffect(() => {
     // ONLY fetch if we have a user and that user is a brand
-    if (user && user.role === "brand") {
+    if (user && user.role === "BRAND") {
       fetchBrandDetails();
     }
   }, [user]); // Now it only runs when user state is confirmed
@@ -42,7 +42,7 @@ const page = () => {
         <ScrollArea className="w-full">
           <TabsList className="w-full">
             <TabsTrigger value="basic">Basic Information</TabsTrigger>
-            {user?.role === "brand" && (
+            {user?.role === "BRAND" && (
               <TabsTrigger value="brand">Brand Information</TabsTrigger>
             )}
             <TabsTrigger value="appearance">Appearance</TabsTrigger>
@@ -54,7 +54,7 @@ const page = () => {
           <TabsContent value="basic">
             <BasicInformationForm />
           </TabsContent>{" "}
-          {user?.role === "brand" && (
+          {user?.role === "BRAND" && (
             <TabsContent value="brand">
               {brand ? (
                 <BrandInformationForm brand={brand} />
