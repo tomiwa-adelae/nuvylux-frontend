@@ -1,17 +1,13 @@
 "use client";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Testimonials } from "./_components/Testimonials";
 import { toast } from "sonner";
 import { useAuth } from "@/store/useAuth";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Logo } from "@/components/Logo";
 import { PageGradient } from "@/components/PageGradient";
 
-export default function Layout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+// Isolated component so useSearchParams() is inside a Suspense boundary
+function AuthGuard() {
   const { user, _hasHydrated } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -32,7 +28,7 @@ export default function Layout({
         router.push("/explore");
       }
     }
-  }, [user, _hasHydrated]);
+  }, [user, _hasHydrated, redirectUrl, router]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -43,15 +39,26 @@ export default function Layout({
       if (unauthenticated === "true") {
         toast.error("Your session has expired. Please log in again.");
       }
-
       if (logout === "true") {
         toast.success("You've been logged out successfully.");
       }
     }
   }, []);
 
+  return null;
+}
+
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
+      {/* Suspense required because AuthGuard calls useSearchParams() */}
+      <Suspense fallback={null}>
+        <AuthGuard />
+      </Suspense>
       <Testimonials />
       <div className="flex relative min-h-[80vh] w-full items-center justify-center">
         <PageGradient />

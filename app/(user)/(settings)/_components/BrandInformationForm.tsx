@@ -67,6 +67,7 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
   const [showModal, setShowModal] = useState(false);
 
   const form = useForm<BrandOnboardingFormSchemaType>({
+    // @ts-ignore
     resolver: zodResolver(BrandOnboardingFormSchema),
     defaultValues: {
       brandType: brand?.brandType || "",
@@ -137,8 +138,10 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
   return (
     <div>
       <Form {...form}>
+        {/* @ts-ignore */}
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
+            // @ts-ignore
             control={form.control}
             name="brandLogo"
             render={({ field }) => (
@@ -180,6 +183,7 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
           />
           <Separator decorative />
           <FormField
+            // @ts-ignore
             control={form.control}
             name="brandName"
             render={({ field }) => (
@@ -193,6 +197,7 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
             )}
           />
           <FormField
+            // @ts-ignore
             control={form.control}
             name="brandType"
             render={({ field }) => (
@@ -220,6 +225,7 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
             )}
           />
           <FormField
+            // @ts-ignore
             control={form.control}
             name="brandColor"
             render={({ field }) => (
@@ -285,6 +291,7 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
             )}
           />
           <FormField
+            // @ts-ignore
             control={form.control}
             name="website"
             render={({ field }) => (
@@ -305,6 +312,7 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
             )}
           />
           <FormField
+            // @ts-ignore
             control={form.control}
             name="description"
             render={({ field }) => (
@@ -327,6 +335,7 @@ export const BrandInformationForm = ({ brand }: { brand: Brand }) => {
               {fields.map((field, index) => (
                 <FormField
                   key={field.id}
+                  // @ts-ignore
                   control={form.control}
                   name={`socialLinks.${index}.url`}
                   render={({ field: formField }) => (

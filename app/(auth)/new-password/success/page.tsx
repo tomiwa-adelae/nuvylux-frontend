@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { maskEmail } from "@/lib/utils";
 import Link from "next/link";
 
+// searchParams only exist at request time, never at build time
+export const dynamic = "force-dynamic";
+
 type SearchParams = Promise<{
   email: string;
 }>;
