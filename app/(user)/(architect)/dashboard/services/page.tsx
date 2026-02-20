@@ -59,12 +59,10 @@ const page = () => {
             <p className="text-muted-foreground max-w-xs mt-2">
               Clients can't book you until you add at least one service.
             </p>
-            <Button
-              variant="outline"
-              className="mt-6"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Create your first service
+            <Button variant="outline" className="mt-6" asChild>
+              <Link href={"/dashboard/services/new"}>
+                Create your first service
+              </Link>
             </Button>
           </div>
         )}
