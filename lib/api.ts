@@ -2,21 +2,8 @@ import axios, { AxiosError, AxiosInstance } from "axios";
 import { useAuth } from "@/store/useAuth";
 import { env } from "./env";
 
-const getBaseURL = () => {
-  if (typeof window === "undefined") {
-    // SSR / build time fallback
-    return env.NEXT_PUBLIC_BACKEND_URL;
-  }
-
-  const { protocol, hostname } = window.location;
-
-  // Use same protocol + host as frontend
-  return `${protocol}//${hostname}:8000`;
-};
-
 const api: AxiosInstance = axios.create({
-  // baseURL: env.NEXT_PUBLIC_BACKEND_URL,
-  baseURL: getBaseURL(),
+  baseURL: env.NEXT_PUBLIC_BACKEND_URL,
 
   withCredentials: true,
   headers: { "Content-Type": "application/json" },
