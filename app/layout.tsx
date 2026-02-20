@@ -11,7 +11,7 @@ const outfits = Outfit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-const siteUrl = "https://nuvylux.com";
+const siteUrl = "https://nuvylux.com.ng";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
