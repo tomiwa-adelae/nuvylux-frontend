@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   IconCircleCheckFilled,
@@ -19,13 +19,9 @@ import { toast } from "sonner";
 const BookingSuccessPage = () => {
   const { id } = useParams();
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { width, height } = useWindowSize();
   const [isVerifying, setIsVerifying] = useState(false);
   const [txRef, setTxRef] = useState<any>();
-
-  // Check if we came back with a success flag from Flutterwave
-  const status = searchParams.get("status");
 
   useEffect(() => {
     // 1. Clear the local storage draft

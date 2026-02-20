@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useTransition } from "react";
-import { useRouter, useParams, useSearchParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -55,8 +55,8 @@ const BookingPage = () => {
   const [isPending, startTransition] = useTransition();
   const [isDragging, setIsDragging] = useState(false);
 
-  const searchParams = useSearchParams();
-  const navigatedBack = searchParams.get("navigated") === "true";
+  // Read search params client-side only (avoids useSearchParams Suspense requirement)
+  const [navigatedBack, setNavigatedBack] = useState(false);
 
   const form = useForm<BookingServiceSchemaType>({
     resolver: zodResolver(BookingServiceSchema),
@@ -69,7 +69,13 @@ const BookingPage = () => {
   });
 
   useEffect(() => {
+    setNavigatedBack(new URLSearchParams(window.location.search).get("navigated") === "true");
+  }, []);
+
+  useEffect(() => {
     const fetchDetails = async () => {
+      // Read directly from URL — state may not be set yet on first render
+      const isBack = new URLSearchParams(window.location.search).get("navigated") === "true";
       try {
         // 1. Fetch the actual service details from API
         const data = await serviceService.getPublicServiceDetails(
@@ -78,7 +84,7 @@ const BookingPage = () => {
         setService(data);
 
         // 2. Only restore draft when navigating back from review page
-        if (navigatedBack) {
+        if (isBack) {
           const savedRaw = localStorage.getItem("pending_booking");
           if (savedRaw) {
             const savedData = JSON.parse(savedRaw);
@@ -108,7 +114,8 @@ const BookingPage = () => {
   }, [slug, form]); // Adding form to dependency array ensures reset works reliably
 
   useEffect(() => {
-    if (!service || !navigatedBack) return;
+    const isBack = new URLSearchParams(window.location.search).get("navigated") === "true";
+    if (!service || !isBack) return;
 
     const restoreFiles = async () => {
       const storedFiles = await getFiles(service.id);
@@ -118,7 +125,7 @@ const BookingPage = () => {
     };
 
     restoreFiles();
-  }, [service, form, navigatedBack]);
+  }, [service, form]);
 
   //   const handleFiles = (files: FileList | null) => {
   //     if (!files) return;

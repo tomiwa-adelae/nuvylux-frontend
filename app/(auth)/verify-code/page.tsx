@@ -1,6 +1,8 @@
 import { Logo } from "@/components/Logo";
 import { VerifyCodeForm } from "../_components/VerifyCodeForm";
 
+export const dynamic = "force-dynamic";
+
 type SearchParams = Promise<{
   email: string;
 }>;

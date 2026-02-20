@@ -1,6 +1,8 @@
 import { Logo } from "@/components/Logo";
 import { NewPasswordForm } from "../_components/NewPasswordForm";
 
+export const dynamic = "force-dynamic";
+
 type SearchParams = Promise<{
   otp: string;
   email: string;

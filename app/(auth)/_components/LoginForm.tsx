@@ -27,12 +27,10 @@ import Link from "next/link";
 import Image from "next/image";
 import api from "@/lib/api";
 import { useAuth } from "@/store/useAuth";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirectUrl = searchParams.get("redirect");
 
   const setUser = useAuth((s) => s.setUser);
   const [pending, startTransition] = useTransition();
@@ -56,6 +54,7 @@ export const LoginForm = () => {
         setUser(res?.data?.user);
         toast.success(res?.data?.message);
 
+        const redirectUrl = new URLSearchParams(window.location.search).get("redirect");
         const loggedInUser = res?.data?.user;
         if (!loggedInUser?.onboardingCompleted) {
           router.push("/onboarding");
