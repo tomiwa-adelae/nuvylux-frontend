@@ -37,12 +37,12 @@ const page = () => {
       <Showcase />
       <FeaturedServices />
       <FeaturedProducts />
-      <PartneringLogo />
+      {/* <PartneringLogo /> */}
       <CoreValues />
       <AboutTeaser />
       <EcosystemOverview />
       <AITeaser />
-      <PartneringLogo />
+      {/* <PartneringLogo /> */}
       <CommunityCTA />
     </div>
   );
