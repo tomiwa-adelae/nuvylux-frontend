@@ -54,7 +54,9 @@ export const LoginForm = () => {
         setUser(res?.data?.user);
         toast.success(res?.data?.message);
 
-        const redirectUrl = new URLSearchParams(window.location.search).get("redirect");
+        const redirectUrl = new URLSearchParams(window.location.search).get(
+          "redirect",
+        );
         const loggedInUser = res?.data?.user;
         if (!loggedInUser?.onboardingCompleted) {
           router.push("/onboarding");
@@ -147,7 +149,7 @@ export const LoginForm = () => {
             Register
           </Link>
         </p>
-        <div className="space-y-2">
+        <div className="hidden space-y-2">
           <Button className="w-full" type="button" variant={"outline"}>
             <Image
               src="/assets/icons/google.svg"

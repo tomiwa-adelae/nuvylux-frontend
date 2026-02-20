@@ -21,7 +21,7 @@ export const CuratedShop = () => {
     const fetchMarketplace = async () => {
       try {
         const res = await api(
-          `${env.NEXT_PUBLIC_BACKEND_URL}/products/public/all`
+          `${env.NEXT_PUBLIC_BACKEND_URL}/products/public/all`,
         );
 
         setProducts(res.data);
@@ -41,7 +41,7 @@ export const CuratedShop = () => {
           <h2 className="font-semibold text-2xl md:text-3xl text-primary">
             Curated Collection {products.length > 0 && `(${products.length})`}
           </h2>
-          <div className="flex justify-between md:justify-end w-full md:w-auto items-center space-x-2">
+          <div className="hidden  justify-between md:justify-end w-full md:w-auto items-center space-x-2">
             <Button variant={"ghost"}>
               <IconSettings2 />
               Filters

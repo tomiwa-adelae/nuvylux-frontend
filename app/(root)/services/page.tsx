@@ -20,7 +20,14 @@ export const metadata: Metadata = {
     description:
       "Discover and book certified beauty and fashion professionals near you on Nuvylux.",
     url: "https://nuvylux.com/services",
-    images: [{ url: "/assets/images/services-img.jpg", width: 1200, height: 630, alt: "Nuvylux Services" }],
+    images: [
+      {
+        url: "/assets/images/services-img.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Nuvylux Services",
+      },
+    ],
   },
 };
 import { ServicesPillars } from "../_components/ServicesPillars";
@@ -39,7 +46,7 @@ const page = () => {
       <AudienceSection />
       <HowItWorksSection />
 
-      <PartneringLogo />
+      {/* <PartneringLogo /> */}
 
       {/* 6. Final Call to Action (Strong Close) */}
       <FinalCtaSection />

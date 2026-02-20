@@ -20,10 +20,10 @@ export const CommunityCTA = () => {
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button asChild variant={"secondary"}>
-            <Link href="/join">Apply to Be a Creator</Link>
+            <Link href="/register">Apply to Be a Creator</Link>
           </Button>
           <Button asChild variant="black">
-            <Link href="/signup">Sign Up for Exclusive Access</Link>
+            <Link href="/register">Sign Up for Exclusive Access</Link>
           </Button>
         </div>
       </div>
