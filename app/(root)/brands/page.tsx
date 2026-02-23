@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,14 @@ import { IconSearch, IconX } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 
 export default function BrandsPage() {
+  return (
+    <Suspense>
+      <BrandsContent />
+    </Suspense>
+  );
+}
+
+function BrandsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
