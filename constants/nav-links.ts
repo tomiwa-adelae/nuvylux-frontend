@@ -53,6 +53,7 @@ export const homeNavLinks = [
 export const homeNavLinksMobile = [
   { slug: "/", label: "Home", icon: IconHome },
   { slug: "/about", label: "About", icon: IconAlertCircle },
+  { slug: "/brands", label: "Brands", icon: IconUsersGroup },
   {
     slug: "/ecosystem",
     label: "Ecosystem",
