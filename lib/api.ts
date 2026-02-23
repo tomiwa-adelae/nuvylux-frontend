@@ -87,12 +87,10 @@ api.interceptors.response.use(
       }
     }
 
-    // Handle 403 or other unauthorized access
-    if (
-      status === 403 ||
-      message === "Unauthorized" ||
-      message === "Forbidden"
-    ) {
+    // Handle auth guard rejections (role/session) — but NOT business logic 403s.
+    // Business logic ForbiddenExceptions have custom messages (e.g. "You must purchase
+    // this product first"), while the auth/roles guard returns exactly "Forbidden".
+    if (message === "Unauthorized" || message === "Forbidden") {
       const { clearUser } = useAuth.getState();
       clearUser();
       if (typeof window !== "undefined") window.location.assign("/login");

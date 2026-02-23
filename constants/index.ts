@@ -43,6 +43,7 @@ import {
   IconBox,
   IconFolder,
   IconHeart,
+  IconStar,
 } from "@tabler/icons-react";
 import { Award } from "lucide-react";
 
@@ -306,6 +307,11 @@ export const adminNavLinks: NavLinkProps[] = [
     label: "Services",
     slug: "/admin/services",
     icon: IconBriefcase,
+  },
+  {
+    label: "Reviews",
+    slug: "/admin/reviews",
+    icon: IconStar,
   },
   {
     label: "Admin Team",

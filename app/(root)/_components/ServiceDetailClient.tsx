@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import { ReviewSection } from "./ReviewSection";
 import {
   IconClock,
   IconCalendar,
@@ -205,6 +206,8 @@ export const ServiceDetailClient = () => {
           </Card>
         </div>
       </div>
+
+      {service && <ReviewSection serviceId={service.id} />}
     </div>
   );
 };

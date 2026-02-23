@@ -13,7 +13,11 @@ import {
 } from "./ServiceFilters";
 import { useUserLocation } from "@/hooks/useUserLocation";
 
-type ServiceWithDistance = Service & { distance: number | null };
+type ServiceWithDistance = Service & {
+  distance: number | null;
+  averageRating?: number;
+  reviewCount?: number;
+};
 
 function buildParams(
   filters: ServiceFiltersState,
@@ -27,6 +31,7 @@ function buildParams(
   if (filters.priceMin) params.priceMin = filters.priceMin;
   if (filters.priceMax) params.priceMax = filters.priceMax;
   if (filters.sortBy) params.sortBy = filters.sortBy;
+  if (filters.minRating) params.minRating = filters.minRating;
 
   // Pass coordinates when available (enables server-side distance calc)
   if (location.lat !== null && location.lng !== null) {
@@ -97,6 +102,7 @@ export const ServicesGrid = () => {
     filters.priceMin ||
     filters.priceMax ||
     filters.radius ||
+    filters.minRating ||
     filters.sortBy !== "newest";
 
   return (
@@ -125,10 +131,15 @@ export const ServicesGrid = () => {
         <EmptyState hasFilters={!!hasActiveFilters} />
       ) : (
         <>
-          {/* Show nearest-label when sorting by distance */}
+          {/* Sort context labels */}
           {filters.sortBy === "distance" && (
             <p className="text-xs text-muted-foreground">
               Sorted by distance from your location
+            </p>
+          )}
+          {filters.sortBy === "rating" && (
+            <p className="text-xs text-muted-foreground">
+              Sorted by highest rating
             </p>
           )}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -137,6 +148,8 @@ export const ServicesGrid = () => {
                 key={service.id}
                 service={service}
                 distance={service.distance}
+                averageRating={service.averageRating}
+                reviewCount={service.reviewCount}
               />
             ))}
           </div>

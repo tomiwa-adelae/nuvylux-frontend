@@ -28,6 +28,10 @@ export type Product = {
   isSaved: boolean;
 
   brand?: Brand;
+
+  // Computed by backend
+  averageRating?: number;
+  reviewCount?: number;
 };
 
 export type OrderItem = {
@@ -201,6 +205,10 @@ export type Service = {
   // Computed by the backend when the caller supplies their coordinates
   distance?: number | null; // kilometres
 
+  // Computed by backend
+  averageRating?: number;
+  reviewCount?: number;
+
   professionalProfile: {
     id: string;
     profession: string;
@@ -258,4 +266,28 @@ export type Booking = {
 
   createdAt: string;
   updatedAt: string;
+};
+
+export type Review = {
+  id: string;
+  rating: number;
+  comment: string | null;
+  userId: string;
+  productId: string | null;
+  serviceId: string | null;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    image: string | null;
+  };
+};
+
+export type ReviewSummary = {
+  reviews: Review[];
+  averageRating: number;
+  totalCount: number;
+  distribution: Record<number, number>;
 };

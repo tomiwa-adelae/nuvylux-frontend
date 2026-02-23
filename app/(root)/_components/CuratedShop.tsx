@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
-import { IconLoader2 } from "@tabler/icons-react";
+import { IconLoader2, IconStarFilled } from "@tabler/icons-react";
 import { env } from "@/lib/env";
 import { Product } from "@/types";
 import { ProductCard } from "./ProductCard";
@@ -9,16 +9,31 @@ import api from "@/lib/api";
 import { categories } from "@/constants";
 import { cn } from "@/lib/utils";
 
+const SORT_OPTIONS = [
+  { value: "", label: "Newest" },
+  { value: "rating", label: "Top Rated" },
+];
+
+const MIN_RATING_OPTIONS = [
+  { value: "", label: "Any Rating" },
+  { value: "4", label: "4★ & up" },
+  { value: "3", label: "3★ & up" },
+];
+
 export const CuratedShop = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [minRating, setMinRating] = useState("");
 
   const fetchMarketplace = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       if (activeCategory) params.set("category", activeCategory);
+      if (sortBy) params.set("sortBy", sortBy);
+      if (minRating) params.set("minRating", minRating);
       const res = await api(
         `${env.NEXT_PUBLIC_BACKEND_URL}/products/public/all?${params.toString()}`,
       );
@@ -28,7 +43,7 @@ export const CuratedShop = () => {
     } finally {
       setLoading(false);
     }
-  }, [activeCategory]);
+  }, [activeCategory, sortBy, minRating]);
 
   useEffect(() => {
     fetchMarketplace();
@@ -41,6 +56,46 @@ export const CuratedShop = () => {
           <h2 className="font-semibold text-2xl md:text-3xl text-primary">
             Curated Collection {!loading && products.length > 0 && `(${products.length})`}
           </h2>
+
+          {/* Sort + Rating filters */}
+          <div className="flex items-center gap-2 mt-3 md:mt-0">
+            {/* Min rating pills */}
+            <div className="flex items-center gap-1">
+              {MIN_RATING_OPTIONS.map((opt) => (
+                <button
+                  key={opt.value}
+                  onClick={() => setMinRating(minRating === opt.value ? "" : opt.value)}
+                  className={cn(
+                    "flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium border transition-colors",
+                    minRating === opt.value
+                      ? "bg-amber-400 text-white border-amber-400"
+                      : "border-input text-muted-foreground hover:border-amber-400/60"
+                  )}
+                >
+                  {opt.value && <IconStarFilled size={10} />}
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Sort pills */}
+            <div className="flex items-center gap-1">
+              {SORT_OPTIONS.map((opt) => (
+                <button
+                  key={opt.value}
+                  onClick={() => setSortBy(opt.value)}
+                  className={cn(
+                    "rounded-full px-3 py-1 text-xs font-medium border transition-colors",
+                    sortBy === opt.value
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "border-input text-muted-foreground hover:border-primary/40"
+                  )}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Category filter pills */}

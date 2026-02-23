@@ -7,9 +7,9 @@ import { IconMail, IconSend } from "@tabler/icons-react";
 
 export const Footer = () => {
   const utilityLinks = [
-    { title: "Legal & Privacy", href: "/legal" },
-    { title: "Careers", href: "/careers" },
-    { title: "Press Kit", href: "/press" },
+    { title: "Privacy Policies", href: "/privacy-policy" },
+    // { title: "Careers", href: "/careers" },
+    // { title: "Press Kit", href: "/press" },
     { title: "Terms of Service", href: "/terms-of-service" },
   ];
 

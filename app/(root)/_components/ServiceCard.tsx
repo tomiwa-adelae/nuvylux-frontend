@@ -7,6 +7,7 @@ import {
   IconMapPin,
   IconDeviceLaptop,
   IconRoute,
+  IconStarFilled,
 } from "@tabler/icons-react";
 import { Badge } from "@/components/ui/badge";
 import { Service } from "@/types";
@@ -28,9 +29,13 @@ function formatDistance(km: number): string {
 export const ServiceCard = ({
   service,
   distance,
+  averageRating,
+  reviewCount,
 }: {
   service: Service;
   distance?: number | null;
+  averageRating?: number;
+  reviewCount?: number;
 }) => {
   const designerName =
     service.professionalProfile.businessName ||
@@ -100,6 +105,18 @@ export const ServiceCard = ({
               {service.name}
             </CardTitle>
           </Link>
+
+          {(reviewCount ?? 0) > 0 && (
+            <div className="flex items-center gap-1">
+              <IconStarFilled size={11} className="text-amber-400 shrink-0" />
+              <span className="text-xs font-semibold">
+                {averageRating!.toFixed(1)}
+              </span>
+              <span className="text-[10px] text-muted-foreground">
+                ({reviewCount})
+              </span>
+            </div>
+          )}
 
           <CardDescription className="mt-1 line-clamp-2 text-sm">
             {service.shortDescription}

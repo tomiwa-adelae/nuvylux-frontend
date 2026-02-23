@@ -3,6 +3,7 @@
 import { PageHeader } from "@/components/PageHeader";
 import { RenderDescription } from "@/components/text-editor/RenderDescription";
 import { productService } from "@/lib/products";
+import { ReviewSection } from "./ReviewSection";
 import { Product } from "@/types";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -333,6 +334,8 @@ export const ProductDetailClient = () => {
           </Card>
         </div>
       </div>
+
+      <ReviewSection productId={product.id} />
 
       <RelatedProducts currentProduct={product} />
 

@@ -7,6 +7,7 @@ import {
   IconHeart,
   IconHeartFilled,
   IconShoppingCartPlus,
+  IconStarFilled,
 } from "@tabler/icons-react";
 import {
   Card,
@@ -163,6 +164,18 @@ export function ProductCard({ product }: { product: Product }) {
               {product.name}
             </CardTitle>
           </Link>
+
+          {(product.reviewCount ?? 0) > 0 && (
+            <div className="flex items-center gap-1">
+              <IconStarFilled size={11} className="text-amber-400 shrink-0" />
+              <span className="text-xs font-semibold">
+                {product.averageRating!.toFixed(1)}
+              </span>
+              <span className="text-[10px] text-muted-foreground">
+                ({product.reviewCount})
+              </span>
+            </div>
+          )}
 
           <div className="flex items-center justify-between mt-1">
             <div className="flex items-center gap-2">

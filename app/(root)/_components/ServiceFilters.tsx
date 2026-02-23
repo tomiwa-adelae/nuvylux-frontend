@@ -11,6 +11,7 @@ import {
   IconCurrentLocation,
   IconAdjustmentsHorizontal,
   IconRefresh,
+  IconStarFilled,
 } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +35,8 @@ export type ServiceFiltersState = {
   priceMin: string;
   priceMax: string;
   radius: string; // km, "" = any
-  sortBy: "newest" | "price_asc" | "price_desc" | "distance";
+  sortBy: "newest" | "price_asc" | "price_desc" | "distance" | "rating";
+  minRating: string; // "" | "3" | "4" | "4.5"
 };
 
 export const DEFAULT_FILTERS: ServiceFiltersState = {
@@ -45,6 +47,7 @@ export const DEFAULT_FILTERS: ServiceFiltersState = {
   priceMax: "",
   radius: "",
   sortBy: "newest",
+  minRating: "",
 };
 
 type Props = {
@@ -401,6 +404,7 @@ export function ServiceFilters({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="newest">Newest First</SelectItem>
+            <SelectItem value="rating">Top Rated</SelectItem>
             {hasLocation && (
               <SelectItem value="distance">Nearest First</SelectItem>
             )}
@@ -426,7 +430,8 @@ export function ServiceFilters({
             filters.deliveryMode ||
             filters.priceMin ||
             filters.priceMax ||
-            filters.radius) && (
+            filters.radius ||
+            filters.minRating) && (
             <span className="flex items-center justify-center h-4 w-4 rounded-full bg-primary-foreground text-primary text-[10px] font-bold">
               {
                 [
@@ -435,6 +440,7 @@ export function ServiceFilters({
                   filters.priceMin,
                   filters.priceMax,
                   filters.radius,
+                  filters.minRating,
                 ].filter(Boolean).length
               }
             </span>
@@ -442,7 +448,7 @@ export function ServiceFilters({
         </button>
       </div>
 
-      {/* ── Row 2: quick type pills (always visible) ── */}
+      {/* ── Row 2: quick type + rating pills (always visible) ── */}
       <div className="flex flex-wrap items-center gap-3">
         <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide shrink-0">
           Type
@@ -452,6 +458,31 @@ export function ServiceFilters({
           value={filters.type}
           onChange={(v) => set("type", v)}
         />
+
+        <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide shrink-0 ml-2">
+          Rating
+        </span>
+        {[
+          { value: "", label: "Any" },
+          { value: "3", label: "3★+" },
+          { value: "4", label: "4★+" },
+          { value: "4.5", label: "4.5★+" },
+        ].map((opt) => (
+          <button
+            key={opt.value}
+            type="button"
+            onClick={() => set("minRating", opt.value)}
+            className={cn(
+              "flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border transition-all",
+              filters.minRating === opt.value
+                ? "bg-amber-400 text-white border-amber-400"
+                : "bg-transparent border-border text-muted-foreground hover:border-amber-400 hover:text-amber-500"
+            )}
+          >
+            {opt.value && <IconStarFilled size={10} />}
+            {opt.label}
+          </button>
+        ))}
       </div>
 
       {/* ── Advanced panel ── */}
