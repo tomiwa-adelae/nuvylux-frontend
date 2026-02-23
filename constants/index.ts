@@ -174,6 +174,17 @@ export const DEFAULT_IMAGE =
 
 export const categories = ["Fashion", "Beauty", "Wellness", "Art & Objects"];
 
+// Brand categories — values match `brandType` stored in DB
+export const BRAND_CATEGORIES = [
+  { value: "fashion", label: "Fashion" },
+  { value: "skincare", label: "Skincare" },
+  { value: "makeup", label: "Makeup" },
+  { value: "hair", label: "Hair" },
+  { value: "tech", label: "Tech" },
+] as const;
+
+export type BrandCategoryValue = (typeof BRAND_CATEGORIES)[number]["value"];
+
 interface NavLinkProps {
   label: string;
   slug: string;

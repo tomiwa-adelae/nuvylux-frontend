@@ -30,6 +30,7 @@ import { PartneringLogo } from "./_components/PartneringLogo";
 import { CommunityCTA } from "./_components/CommunityCTA";
 import { EcosystemOverview } from "./_components/EcosystemOverview";
 import { AITeaser } from "./_components/AITeaser";
+import { BrandCategorySection } from "./_components/BrandCategorySection";
 
 const page = () => {
   return (
@@ -37,6 +38,7 @@ const page = () => {
       <Showcase />
       <FeaturedServices />
       <FeaturedProducts />
+      <BrandCategorySection />
       {/* <PartneringLogo /> */}
       <CoreValues />
       <AboutTeaser />
