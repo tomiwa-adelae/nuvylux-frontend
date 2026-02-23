@@ -17,6 +17,8 @@ import {
   IconCheck,
   IconPackage,
   IconLoader2,
+  IconTruck,
+  IconCreditCard,
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { TimelineItem } from "@/components/TimelineItem";
@@ -87,6 +89,8 @@ const page = () => {
   const isPartiallyShipped = brandItems.some(
     (i: any) => i.status === "SHIPPED" || i.status === "DELIVERED",
   );
+
+  const isPOD = order.paymentMethod === "pay_on_delivery";
 
   let brandStatusLabel = "Processing";
   if (isFullyDelivered) brandStatusLabel = "Delivered";
@@ -210,12 +214,23 @@ const page = () => {
               <Separator />
 
               <div className="space-y-2">
-                {/* Action 1: Mark as Shipped (Only if items are still processing) */}
+                {/* POD notice — remind brand to collect payment on delivery */}
+                {isPOD && (
+                  <div className="bg-amber-50 border border-amber-100 text-amber-800 text-xs p-2.5 rounded-lg">
+                    <span className="font-semibold">Pay on Delivery</span> — collect{" "}
+                    <span className="font-semibold">
+                      ₦{Number(order.total).toLocaleString()}
+                    </span>{" "}
+                    in cash upon delivery.
+                  </div>
+                )}
+
+                {/* Action 1: Mark as Shipped (Only if items are still not shipped) */}
                 {!isFullyShipped && (
                   <Button
                     className="w-full gap-2"
                     onClick={() => updateStatus("SHIPPED")}
-                    disabled={updating || !order.paidAt}
+                    disabled={updating}
                   >
                     {updating ? (
                       <IconLoader2 className="animate-spin" size={18} />
@@ -264,12 +279,21 @@ const page = () => {
                 icon={<IconPackage size={14} />}
                 active
               />
-              <TimelineItem
-                label="Payment Received"
-                date={order.paidAt}
-                icon={<IconCheck size={14} />}
-                active={!!order.paidAt}
-              />
+              {isPOD ? (
+                <TimelineItem
+                  label="Pay on Delivery"
+                  date={isFullyDelivered ? order.deliveredAt : null}
+                  icon={<IconTruck size={14} />}
+                  active={isFullyDelivered}
+                />
+              ) : (
+                <TimelineItem
+                  label="Payment Received"
+                  date={order.paidAt}
+                  icon={<IconCreditCard size={14} />}
+                  active={!!order.paidAt}
+                />
+              )}
               <TimelineItem
                 label={
                   isFullyShipped
@@ -278,13 +302,10 @@ const page = () => {
                       ? "Partially Dispatched"
                       : "Awaiting Dispatch"
                 }
-                // We show the platform date only if this specific brand has started shipping
                 date={isPartiallyShipped ? order.shippedAt : null}
                 icon={<IconTruckDelivery size={14} />}
                 active={isPartiallyShipped || isFullyShipped}
               />
-
-              {/* 4. Customer Received - Active ONLY if ALL of YOUR items are DELIVERED */}
               <TimelineItem
                 label="Customer Received"
                 date={isFullyDelivered ? order.deliveredAt : null}

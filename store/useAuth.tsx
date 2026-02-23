@@ -18,6 +18,7 @@ export type User = {
   role: string;
   gender: string | null;
   onboardingCompleted: boolean;
+  brandOnboardingCompleted: boolean;
 } | null;
 
 type AuthState = {

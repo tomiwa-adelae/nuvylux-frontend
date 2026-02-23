@@ -8,10 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { formatMoneyInput } from "@/lib/utils";
+import { cn, formatMoneyInput } from "@/lib/utils";
 import api from "@/lib/api";
 import { useRouter } from "next/navigation";
-import { IconLock } from "@tabler/icons-react";
+import { IconCreditCard, IconLock, IconTruck } from "@tabler/icons-react";
 import { Loader } from "@/components/Loader";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
@@ -36,6 +36,21 @@ import {
 import { CheckoutFormSchema, CheckoutFormSchemaType } from "@/lib/zodSchemas";
 import { CurrencyIcon } from "@/components/CurrencyIcon";
 
+const PAYMENT_METHODS = [
+  {
+    value: "online",
+    label: "Pay Online",
+    description: "Card, bank transfer & more",
+    icon: IconCreditCard,
+  },
+  {
+    value: "pay_on_delivery",
+    label: "Pay on Delivery",
+    description: "Cash when it arrives",
+    icon: IconTruck,
+  },
+] as const;
+
 const CheckoutPage = () => {
   const { items, clearCart } = useCart();
   const { user } = useAuth();
@@ -53,6 +68,7 @@ const CheckoutPage = () => {
       city: user?.city || "",
       state: user?.state || "",
       customerNote: "",
+      paymentMethod: "online",
     },
   });
 
@@ -66,6 +82,7 @@ const CheckoutPage = () => {
         address: user.address || "",
         city: user.city || "",
         state: user.state || "",
+        paymentMethod: "online",
       });
     }
   }, [user, form]);
@@ -131,7 +148,7 @@ const CheckoutPage = () => {
           className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-2"
         >
           {/* LEFT: Shipping Details */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2">
             <Card className="border-none shadow-none">
               <CardHeader className="p-0">
                 <CardTitle className="uppercase">
@@ -242,12 +259,70 @@ const CheckoutPage = () => {
                   name="customerNote"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Order CustomerNote (Optional)</FormLabel>
+                      <FormLabel>Order Note (Optional)</FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Any special instructions?"
                           {...field}
                         />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Payment Method Selection */}
+            <Card className="border-none shadow-none gap-2">
+              <CardHeader className="p-0">
+                <CardTitle className="uppercase">Payment Method</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <FormField
+                  control={form.control}
+                  name="paymentMethod"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {PAYMENT_METHODS.map((method) => {
+                            const Icon = method.icon;
+                            const selected = field.value === method.value;
+                            return (
+                              <button
+                                key={method.value}
+                                type="button"
+                                onClick={() => field.onChange(method.value)}
+                                className={cn(
+                                  "flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all",
+                                  selected
+                                    ? "border-primary bg-primary/5"
+                                    : "border-input hover:border-primary/40",
+                                )}
+                              >
+                                <div
+                                  className={cn(
+                                    "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg",
+                                    selected
+                                      ? "bg-primary text-primary-foreground"
+                                      : "bg-muted text-muted-foreground",
+                                  )}
+                                >
+                                  <Icon className="size-4" />
+                                </div>
+                                <div>
+                                  <p className="font-semibold text-sm">
+                                    {method.label}
+                                  </p>
+                                  <p className="text-xs text-muted-foreground mt-0.5">
+                                    {method.description}
+                                  </p>
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>

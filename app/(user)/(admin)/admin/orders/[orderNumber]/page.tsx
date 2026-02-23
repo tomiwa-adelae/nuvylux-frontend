@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/PageHeader";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -20,7 +21,7 @@ import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
-import { IconMail, IconExternalLink } from "@tabler/icons-react";
+import { IconMail, IconExternalLink, IconTruck, IconCreditCard } from "@tabler/icons-react";
 
 const DEFAULT_IMAGE = "/assets/images/profile-img.jpg";
 const ORDER_STATUSES = [
@@ -201,6 +202,56 @@ export default function AdminOrderDetailPage() {
                   ))}
                 </SelectContent>
               </Select>
+            </CardContent>
+          </Card>
+
+          {/* Payment Info */}
+          <Card className="gap-1">
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                {order.paymentMethod === "pay_on_delivery" ? (
+                  <IconTruck className="size-4 text-amber-600" />
+                ) : (
+                  <IconCreditCard className="size-4 text-green-600" />
+                )}
+                Payment
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Method</span>
+                <Badge
+                  variant="outline"
+                  className={
+                    order.paymentMethod === "pay_on_delivery"
+                      ? "bg-amber-50 text-amber-800 border-amber-200"
+                      : "bg-blue-50 text-blue-800 border-blue-200"
+                  }
+                >
+                  {order.paymentMethod === "pay_on_delivery"
+                    ? "Cash on Delivery"
+                    : "Online"}
+                </Badge>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Status</span>
+                <StatusBadge status={order.paymentStatus} />
+              </div>
+              {order.paidAt && (
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Paid on</span>
+                  <span className="text-xs">{formatDate(order.paidAt)}</span>
+                </div>
+              )}
+              {order.paymentMethod === "pay_on_delivery" && !order.paidAt && (
+                <p className="text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded p-2 mt-1">
+                  Collect{" "}
+                  <span className="font-bold">
+                    ₦{Number(order.total).toLocaleString()}
+                  </span>{" "}
+                  in cash upon delivery.
+                </p>
+              )}
             </CardContent>
           </Card>
 

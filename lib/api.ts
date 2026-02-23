@@ -10,11 +10,12 @@ const api: AxiosInstance = axios.create({
 });
 
 const PUBLIC_ROUTES = [
-  "/auth",
+  "/auth/login",
   "/auth/register",
   "/auth/forgot-password",
   "/auth/verify-code",
   "/auth/set-new-password",
+  "/auth/refresh", // never re-intercept the refresh endpoint itself
 ];
 
 function isPublicRoute(url?: string) {
@@ -77,10 +78,10 @@ api.interceptors.response.use(
         processQueue(err);
         isRefreshing = false;
 
-        // Refresh failed — log out user
+        // Refresh failed — session fully expired, send to login
         const { clearUser } = useAuth.getState();
         clearUser();
-        if (typeof window !== "undefined") window.location.assign("/");
+        if (typeof window !== "undefined") window.location.assign("/login");
 
         return Promise.reject(err);
       }

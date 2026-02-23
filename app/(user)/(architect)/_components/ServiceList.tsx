@@ -26,14 +26,21 @@ import { Button } from "@/components/ui/button";
 
 import { formatMoneyInput } from "@/lib/utils";
 import { CurrencyIcon } from "@/components/CurrencyIcon";
+import { DEFAULT_IMAGE } from "@/constants";
 
-export const ServiceList = ({ services, onUpdate }: { services: any[]; onUpdate: () => void }) => {
+export const ServiceList = ({
+  services,
+  onUpdate,
+}: {
+  services: any[];
+  onUpdate: () => void;
+}) => {
   return (
     // Grid layout to match product browsing
     <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-2">
       {services.map((service) => (
         <Card key={service.id} className="p-0 overflow-hidden group">
-          <CardContent className="p-1.5 relative">
+          <CardContent className="py-1.5 px-0 relative">
             {/* Actions Menu - Floating top right */}
             <div className="absolute top-3 right-3 z-10">
               <DropdownMenu>
@@ -61,10 +68,10 @@ export const ServiceList = ({ services, onUpdate }: { services: any[]; onUpdate:
             <Link href={`/dashboard/services/${service.slug}`}>
               <div className="relative aspect-square overflow-hidden rounded-md">
                 <Image
-                  src={service.thumbnail || "/api/placeholder/400/400"}
+                  src={service.thumbnail || DEFAULT_IMAGE}
                   alt={service.name}
                   fill
-                  className="object-cover transition-transform group-hover:scale-105"
+                  className="object-cover size-full transition-transform group-hover:scale-105"
                 />
                 {/* Status Badge Overlaid on Image */}
                 <div className="absolute bottom-2 left-2">

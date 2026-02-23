@@ -60,13 +60,9 @@ export const ProviderDashboard = () => {
     );
   }
 
-  const activeServices = services.filter(
-    (s) => s.status === "ACTIVE"
-  ).length;
+  const activeServices = services.filter((s) => s.status === "ACTIVE").length;
 
-  const pendingBookings = bookings.filter(
-    (b) => b.status === "PENDING"
-  ).length;
+  const pendingBookings = bookings.filter((b) => b.status === "PENDING").length;
 
   const totalEarnings = bookings
     .filter((b) => b.paymentStatus === "PAID")
@@ -83,7 +79,7 @@ export const ProviderDashboard = () => {
       />
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+      <div className="grid grid-cols-2 2xl:grid-cols-4 gap-3 mb-8">
         <StatCard
           icon={<IconFolder className="size-5 text-primary" />}
           label="Active Services"
@@ -302,20 +298,12 @@ const StatCard = ({
         {label}
       </p>
       <p className="text-2xl font-bold mt-1">{value}</p>
-      {sub && (
-        <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
-      )}
+      {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </CardContent>
   </Card>
 );
 
-const SectionHeader = ({
-  title,
-  href,
-}: {
-  title: string;
-  href: string;
-}) => (
+const SectionHeader = ({ title, href }: { title: string; href: string }) => (
   <div className="flex items-center justify-between mb-3">
     <h2 className="text-lg font-semibold">{title}</h2>
     <Button variant="ghost" size="sm" asChild>

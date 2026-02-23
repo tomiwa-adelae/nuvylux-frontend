@@ -59,6 +59,7 @@ const PRESET_COLORS = [
 
 export const BrandOnboarding = () => {
   const router = useRouter();
+  const { user, setUser } = useAuth();
 
   const [pending, startTransition] = useTransition();
   const [logo, setLogo] = useState<string>("/assets/images/logo.jpg");
@@ -111,8 +112,11 @@ export const BrandOnboarding = () => {
     startTransition(async () => {
       try {
         const res = await api.post("/onboarding/brand", data);
-        // setUser(res?.data?.user);
         toast.success(res?.data?.message);
+        // Mark brand onboarding as complete in the auth store
+        if (user) {
+          setUser({ ...user, brandOnboardingCompleted: true });
+        }
         router.push("/brand-onboarding/success");
       } catch (error: any) {
         toast.error(error?.response?.data?.message || "Internal server error");

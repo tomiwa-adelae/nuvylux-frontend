@@ -1,5 +1,19 @@
 import api from "./api";
 
+export type ExploreServicesParams = {
+  type?: string;
+  search?: string;
+  deliveryMode?: string;
+  priceMin?: string;
+  priceMax?: string;
+  city?: string;
+  state?: string;
+  lat?: string;
+  lng?: string;
+  radius?: string;
+  sortBy?: "newest" | "price_asc" | "price_desc" | "distance";
+};
+
 export const serviceService = {
   getMyServices: async () => {
     const res = await api.get(`/services`);
@@ -11,9 +25,8 @@ export const serviceService = {
     return res.data;
   },
 
-  // Client discovery side
-  getExploreServices: async (params?: { type?: string; search?: string }) => {
-    // Matches the @Get('explore') endpoint in the backend
+  // Public discovery — supports location + filter params
+  getExploreServices: async (params?: ExploreServicesParams) => {
     const res = await api.get(`/services/public/explore`, { params });
     return res.data;
   },

@@ -138,9 +138,15 @@ export const OnboardingProfileForm = () => {
     startTransition(async () => {
       try {
         const res = await api.post("/onboarding/profile", data);
-        setUser(res?.data?.user);
+        const updatedUser = res?.data?.user;
+        setUser(updatedUser);
         toast.success(res?.data?.message);
-        router.push("/onboarding/success");
+        // Brand users must complete their brand identity next
+        if (updatedUser?.role === "BRAND") {
+          router.push("/brand-onboarding");
+        } else {
+          router.push("/onboarding/success");
+        }
       } catch (error: any) {
         toast.error(error?.response?.data?.message || "Internal server error");
       }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { IconSparkles } from "@tabler/icons-react";
+import { DEFAULT_IMAGE } from "@/constants";
 
 export function ProductCard({ product }: any) {
   return (
@@ -16,7 +17,7 @@ export function ProductCard({ product }: any) {
           </Badge>
         </div>
         <img
-          src="/api/placeholder/400/600"
+          src={DEFAULT_IMAGE}
           alt="Product"
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
         />

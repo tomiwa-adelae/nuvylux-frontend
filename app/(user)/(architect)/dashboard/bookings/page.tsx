@@ -18,8 +18,6 @@ const page = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(bookings);
-
   useEffect(() => {
     const fetchBookings = async () => {
       try {

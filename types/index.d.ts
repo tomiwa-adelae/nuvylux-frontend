@@ -193,11 +193,22 @@ export type Service = {
   createdAt: string;
   updatedAt: string;
 
+  // Geocoded coordinates (set when deliveryMode is IN_PERSON or HYBRID)
+  latitude?: number | null;
+  longitude?: number | null;
+
+  // Computed by the backend when the caller supplies their coordinates
+  distance?: number | null; // kilometres
+
   professionalProfile: {
     id: string;
     profession: string;
     businessName: string;
-    user: User;
+    user: User & {
+      city?: string | null;
+      state?: string | null;
+      country?: string | null;
+    };
   };
 };
 

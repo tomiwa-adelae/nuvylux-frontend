@@ -217,6 +217,7 @@ export const CheckoutFormSchema = z.object({
   city: z.string().min(2, "City is required"),
   state: z.string().min(2, "State is required"),
   customerNote: z.string().optional(),
+  paymentMethod: z.enum(["online", "pay_on_delivery"]).default("online"),
 });
 
 export const BasicInformationFormSchema = z.object({

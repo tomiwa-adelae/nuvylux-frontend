@@ -10,6 +10,7 @@ import {
   IconCheck,
   IconPackage,
   IconTruckDelivery,
+  IconTruck,
   IconCreditCard,
   IconX,
   IconWallet,
@@ -115,6 +116,8 @@ const page = () => {
     deliveredItemsCount > 0 && deliveredItemsCount < totalItems;
   const isFullyDelivered = deliveredItemsCount === totalItems;
 
+  const isPOD = order.paymentMethod === "pay_on_delivery";
+
   const activities = [
     {
       label: "Order Placed",
@@ -122,25 +125,34 @@ const page = () => {
       icon: <IconPackage size={16} />,
       completed: true,
     },
-    // Payment Step
-    ...(isVerifying
+    // Payment Step — differs for POD vs online
+    ...(isPOD
       ? [
           {
-            label: "Verifying Payment...",
-            date: new Date().toISOString(),
-            icon: <IconLoaderQuarter className="animate-spin" size={16} />,
-            completed: false,
-            isLoading: true,
+            label: "Pay on Delivery",
+            date: order.deliveredAt ?? null,
+            icon: <IconTruck size={16} />,
+            completed: !!order.deliveredAt,
           },
         ]
-      : [
-          {
-            label: "Payment Confirmed",
-            date: order.paidAt,
-            icon: <IconCreditCard size={16} />,
-            completed: !!order.paidAt,
-          },
-        ]),
+      : isVerifying
+        ? [
+            {
+              label: "Verifying Payment...",
+              date: new Date().toISOString(),
+              icon: <IconLoaderQuarter className="animate-spin" size={16} />,
+              completed: false,
+              isLoading: true,
+            },
+          ]
+        : [
+            {
+              label: "Payment Confirmed",
+              date: order.paidAt,
+              icon: <IconCreditCard size={16} />,
+              completed: !!order.paidAt,
+            },
+          ]),
     // Shipping Step (Handles Partial)
     {
       label: isPartiallyShipped
@@ -184,8 +196,14 @@ const page = () => {
     if (a.completed || a.isPartial || a.isLoading) return true;
 
     // Show the "Next Step" guide
-    if (a.label === "Payment Confirmed" && !order.paidAt) return true;
-    if (a.label.includes("Shipped") && order.paidAt && !isFullyShipped)
+    if (a.label === "Payment Confirmed" && !order.paidAt && !isPOD) return true;
+    if (a.label === "Pay on Delivery" && isPOD) return true;
+    // For online orders, shipping step shows after payment. For POD, it shows once order is confirmed.
+    if (
+      a.label.includes("Shipped") &&
+      (order.paidAt || isPOD) &&
+      !isFullyShipped
+    )
       return true;
     if (a.label.includes("Delivered") && isFullyShipped && !isFullyDelivered)
       return true;
@@ -255,26 +273,28 @@ const page = () => {
             <Button
               variant="outline"
               className="text-destructive border-red-100 hover:bg-red-50"
-              onClick={() => setIsCancelModalOpen(true)} // Open modal instead of confirm()              disabled={processingAction}
+              onClick={() => setIsCancelModalOpen(true)}
             >
               <IconX size={16} className="mr-2" />
               Cancel Order
             </Button>
           )}
 
-          {/* Show Payment Button if not paid */}
-          {!order.paidAt && order.status !== "CANCELLED" && (
-            <Button disabled={processingAction} onClick={handlePayment}>
-              {processingAction ? (
-                <Loader text="Processing..." />
-              ) : (
-                <>
-                  <IconWallet size={16} className="mr-2" />
-                  Pay Now
-                </>
-              )}
-            </Button>
-          )}
+          {/* Show Pay Now only for online payment orders that haven't paid */}
+          {!order.paidAt &&
+            order.status !== "CANCELLED" &&
+            order.paymentMethod !== "pay_on_delivery" && (
+              <Button disabled={processingAction} onClick={handlePayment}>
+                {processingAction ? (
+                  <Loader text="Processing..." />
+                ) : (
+                  <>
+                    <IconWallet size={16} className="mr-2" />
+                    Pay Now
+                  </>
+                )}
+              </Button>
+            )}
         </div>
       </div>
 
@@ -437,6 +457,28 @@ const page = () => {
               </div>
             </CardContent>
           </Card>
+          {isPOD && !order.deliveredAt && (
+            <Card className="border-amber-100 bg-amber-50/40">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-1.5 text-amber-800">
+                  <IconTruck className="text-amber-600" />
+                  Pay on Delivery
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-xs space-y-1 text-amber-900">
+                <p>
+                  Payment will be collected in cash when your order arrives.
+                  Please have the exact amount ready.
+                </p>
+                <p className="font-semibold mt-2">
+                  Amount due on delivery:{" "}
+                  <CurrencyIcon currency="NGN" />{" "}
+                  {formatMoneyInput(Number(order.total))}
+                </p>
+              </CardContent>
+            </Card>
+          )}
+
           {order.paidAt && (
             <Card className="border-green-100 bg-green-50/30">
               <CardHeader>
@@ -446,12 +488,22 @@ const page = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-xs space-y-2">
+                {order.transactionRef && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">
+                      Transaction Ref:
+                    </span>
+                    <span className="font-mono font-medium">
+                      {order.transactionRef}
+                    </span>
+                  </div>
+                )}
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">
-                    Transaction Ref:
-                  </span>
-                  <span className="font-mono font-medium">
-                    {order.transactionRef}
+                  <span className="text-muted-foreground">Payment Method:</span>
+                  <span className="font-medium capitalize">
+                    {order.paymentMethod === "pay_on_delivery"
+                      ? "Cash on Delivery"
+                      : "Online"}
                   </span>
                 </div>
                 <div className="flex justify-between">

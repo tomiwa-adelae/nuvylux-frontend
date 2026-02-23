@@ -30,8 +30,6 @@ const MyBookingsPage = () => {
     fetchBookings();
   }, []);
 
-  console.log(bookings);
-
   if (loading) return <Loader />;
 
   return (

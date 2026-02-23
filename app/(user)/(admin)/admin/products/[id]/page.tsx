@@ -218,8 +218,6 @@ export default function AdminProductDetailPage() {
                 </div>
               )}
 
-              {console.log(colors)}
-
               {/* Colors */}
               {colors && colors.length > 0 && (
                 <div>

@@ -10,7 +10,6 @@ const page = () => {
   const [brand, setBrand] = useState<Brand>();
 
   const fetchBrandDetails = async () => {
-    console.log("ess");
     const brandDetails = await brandService.getBrandDetails();
     setBrand(brandDetails);
   };

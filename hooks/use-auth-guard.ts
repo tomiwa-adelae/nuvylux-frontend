@@ -14,8 +14,17 @@ export function useAuthGuard() {
       router.push("/login");
     } else if (!user.onboardingCompleted) {
       router.push("/onboarding");
+    } else if (user.role === "BRAND" && !user.brandOnboardingCompleted) {
+      router.push("/brand-onboarding");
     }
   }, [user, _hasHydrated, router]);
 
-  return { user, isReady: _hasHydrated && !!user && user.onboardingCompleted };
+  const isBrandReady =
+    user?.role !== "BRAND" || !!user?.brandOnboardingCompleted;
+
+  return {
+    user,
+    isReady:
+      _hasHydrated && !!user && user.onboardingCompleted && isBrandReady,
+  };
 }

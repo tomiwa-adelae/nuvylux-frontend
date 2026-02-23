@@ -152,13 +152,16 @@ export const OrderCard = ({ order, isBrandView = false }: OrderCardProps) => {
               </Link>
             </Button>
 
-            {/* Quick action for brand view */}
-            {isBrandView && order.status === "PROCESSING" && (
-              <Button size="sm" className="rounded-full gap-1.5">
-                <IconTruckDelivery size={16} />
-                Ship
-              </Button>
-            )}
+            {/* Quick action for brand view — also available for POD (CONFIRMED) orders */}
+            {isBrandView &&
+              (order.status === "PROCESSING" ||
+                (order.status === "CONFIRMED" &&
+                  order.paymentMethod === "pay_on_delivery")) && (
+                <Button size="sm" className="rounded-full gap-1.5">
+                  <IconTruckDelivery size={16} />
+                  Ship
+                </Button>
+              )}
           </div>
         </div>
       </CardContent>
