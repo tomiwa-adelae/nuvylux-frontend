@@ -32,10 +32,12 @@ import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import api from "@/lib/api";
 import { useAuth } from "@/store/useAuth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const RegisterForm = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const persona = searchParams.get("persona");
 
   const setUser = useAuth((s) => s.setUser);
 
@@ -97,7 +99,7 @@ export const RegisterForm = () => {
         const res = await api.post("/auth/register", data);
         setUser(res?.data?.user);
         toast.success(res?.data?.message);
-        router.push("/onboarding");
+        router.push(persona ? `/onboarding?persona=${persona}` : "/onboarding");
       } catch (error: any) {
         toast.error(error?.response?.data?.message || "Internal server error");
       }

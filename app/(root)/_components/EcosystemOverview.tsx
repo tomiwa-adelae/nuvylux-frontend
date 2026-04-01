@@ -1,32 +1,54 @@
 import Link from "next/link";
-import { Users, ShoppingBag, Landmark } from "lucide-react"; // Icons for the three main pillars
+import {
+  IconSparkles,
+  IconCompass,
+  IconBuildingStore,
+  IconTools,
+  IconStars,
+} from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 
 export const EcosystemOverview = () => {
-  const ecosystemPillars = [
+  const personas = [
     {
-      icon: Users,
-      title: "For Creators",
-      tagline: "Visibility, Growth, & Influence",
+      icon: IconSparkles,
+      title: "The Visionary",
+      tagline: "Client",
       description:
-        "Access data tools, verified booking platforms, and global masterclasses to elevate your professional practice and brand.",
-      link: "/creators",
+        "Discover and book verified beauty and fashion professionals. Access AI-driven consultations and enjoy trusted, high-quality services tailored to you.",
+      link: "/register?persona=client",
     },
     {
-      icon: ShoppingBag,
-      title: "For Customers",
-      tagline: "Verified Bookings & Intelligence",
+      icon: IconCompass,
+      title: "The Architect",
+      tagline: "Professional",
       description:
-        "Discover verified beauty and fashion professionals, access AI-driven consultations, and book trusted, high-quality services.",
-      link: "/customers",
+        "Offer your services as a makeup artist, hairstylist, photographer, or fashion stylist. Get verified, manage bookings, and grow your professional brand.",
+      link: "/register?persona=professional",
     },
     {
-      icon: Landmark, // Represents a company/brand structure
-      title: "For Brands & Partners",
-      tagline: "Strategy, Content, & Partnerships",
+      icon: IconBuildingStore,
+      title: "The Brand",
+      tagline: "Business",
       description:
-        "Collaborate with Nuvylux Agency for bespoke digital strategy, content creation, and technology integration.",
-      link: "/partnerships",
+        "List and sell your products — skincare, makeup, fashion, or beauty tech — to a curated audience actively seeking quality and authenticity.",
+      link: "/register?persona=brand",
+    },
+    {
+      icon: IconTools,
+      title: "The Artisan",
+      tagline: "Craft & Handmade",
+      description:
+        "Showcase handcrafted and custom-made creations. Connect with customers who value unique, artisan-quality beauty and fashion pieces.",
+      link: "/register?persona=artisan",
+    },
+    {
+      icon: IconStars,
+      title: "The Curator",
+      tagline: "Creator / Influencer",
+      description:
+        "Build influence, collaborate with brands, and monetise your aesthetic. Access data tools, brand partnerships, and global masterclasses.",
+      link: "/register?persona=curator",
     },
   ];
 
@@ -38,32 +60,31 @@ export const EcosystemOverview = () => {
             The Nuvylux Ecosystem
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A seamless digital world connecting creators, customers, and
-            innovation under one visionary platform.
+            One platform, five paths. Find where you belong and step into the
+            Nuvylux world.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          {ecosystemPillars.map((pillar, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {personas.map((persona, index) => (
             <div
               key={index}
-              className="p-8 bg-white rounded-xl shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-[#C0C0C0]" // Platinum Silver border on hover
+              className="p-8 bg-white rounded-xl shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-[#C0C0C0]"
             >
-              <pillar.icon className="w-10 h-10 text-primary mb-4" />{" "}
-              {/* Till Green icon */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {pillar.title}
+              <persona.icon className="w-10 h-10 text-primary mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                {persona.title}
               </h3>
               <p className="text-sm uppercase text-gray-500 mb-4 tracking-wider">
-                {pillar.tagline}
+                {persona.tagline}
               </p>
-              <p className="text-gray-600 mb-6">{pillar.description}</p>
+              <p className="text-gray-600 mb-6">{persona.description}</p>
               <Button
                 variant="outline"
                 asChild
                 className="border-[#C0C0C0] text-gray-800 hover:bg-gray-100 transition-colors"
               >
-                <Link href={pillar.link}>Learn More</Link>
+                <Link href={persona.link}>Get Started</Link>
               </Button>
             </div>
           ))}

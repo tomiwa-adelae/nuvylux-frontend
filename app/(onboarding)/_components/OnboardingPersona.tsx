@@ -11,16 +11,19 @@ import {
   IconStars,
   IconTools,
 } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/store/useAuth";
 
 export const OnboardingPersona = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user } = useAuth();
   const setUser = useAuth((s) => s.setUser);
-  const [selectedPersona, setSelectedPersona] = useState("");
+  const [selectedPersona, setSelectedPersona] = useState(
+    searchParams.get("persona") ?? "",
+  );
   const [pending, startTransition] = useTransition();
 
   const personas = [

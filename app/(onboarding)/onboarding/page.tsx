@@ -1,5 +1,5 @@
 import { Logo } from "@/components/Logo";
-import React from "react";
+import React, { Suspense } from "react";
 import { OnboardingPersona } from "../_components/OnboardingPersona";
 import { PageHeader } from "../_components/PageHeader";
 
@@ -11,7 +11,9 @@ const page = () => {
         title="How do you want to use Nuvylux?"
         description={"You can change this later"}
       />
-      <OnboardingPersona />
+      <Suspense>
+        <OnboardingPersona />
+      </Suspense>
     </div>
   );
 };
