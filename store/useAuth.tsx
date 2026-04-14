@@ -16,6 +16,7 @@ export type User = {
   state: string | null;
   country: string | null;
   role: string;
+  adminPosition: string | null;
   gender: string | null;
   onboardingCompleted: boolean;
   brandOnboardingCompleted: boolean;

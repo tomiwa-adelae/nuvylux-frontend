@@ -66,7 +66,7 @@ api.interceptors.response.use(
         const { data } = await api.post(
           "/auth/refresh",
           {},
-          { withCredentials: true }
+          { withCredentials: true },
         );
 
         // Refresh succeeded — retry queued requests
@@ -97,7 +97,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
@@ -113,5 +113,28 @@ export async function postData<T>(url: string, data: any): Promise<T> {
 }
 export async function updateData<T>(url: string, data: any): Promise<T> {
   const res = await api.patch(url, data);
+  return res.data;
+}
+
+export async function deleteData<T>(url: string): Promise<T> {
+  const res = await api.delete(url);
+  return res.data;
+}
+
+export async function publicFetch<T>(url: string): Promise<T> {
+  const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_URL}${url}`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+  return res.json() as Promise<T>;
+}
+
+export async function uploadFile<T>(
+  url: string,
+  formData: FormData,
+): Promise<T> {
+  const res = await api.post(url, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return res.data;
 }

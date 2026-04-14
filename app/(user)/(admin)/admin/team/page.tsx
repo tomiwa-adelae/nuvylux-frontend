@@ -21,7 +21,7 @@ import Image from "next/image";
 import { Loader2, Plus, Trash2, UserPlus } from "lucide-react";
 
 const DEFAULT_IMAGE = "/assets/images/profile-img.jpg";
-const POSITIONS = ["SUPER_ADMIN", "ADMIN", "MODERATOR"];
+const POSITIONS = ["SUPER_ADMIN", "ADMIN", "MODERATOR", "CONTENT_WRITER"];
 
 export default function AdminTeamPage() {
   const [admins, setAdmins] = useState<any[]>([]);
@@ -313,6 +313,10 @@ export default function AdminTeamPage() {
             </p>
             <p>
               <strong>MODERATOR</strong> — Can view and moderate content only.
+            </p>
+            <p>
+              <strong>CONTENT WRITER</strong> — Blog access only. Can create,
+              edit, publish, and delete blog posts.
             </p>
           </div>
         </CardContent>

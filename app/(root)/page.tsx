@@ -31,6 +31,7 @@ import { CommunityCTA } from "./_components/CommunityCTA";
 import { EcosystemOverview } from "./_components/EcosystemOverview";
 import { AITeaser } from "./_components/AITeaser";
 import { BrandCategorySection } from "./_components/BrandCategorySection";
+import { FeaturedBlog } from "./_components/FeaturedBlog";
 
 const page = () => {
   return (
@@ -41,6 +42,7 @@ const page = () => {
       <BrandCategorySection />
       {/* <PartneringLogo /> */}
       <CoreValues />
+      <FeaturedBlog />
       <AboutTeaser />
       <EcosystemOverview />
       <AITeaser />

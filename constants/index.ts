@@ -314,8 +314,21 @@ export const adminNavLinks: NavLinkProps[] = [
     icon: IconStar,
   },
   {
+    label: "Blog",
+    slug: "/admin/blog",
+    icon: IconArticle,
+  },
+  {
     label: "Admin Team",
     slug: "/admin/team",
     icon: IconShield,
+  },
+];
+
+export const contentWriterNavLinks: NavLinkProps[] = [
+  {
+    label: "Blog",
+    slug: "/admin/blog",
+    icon: IconArticle,
   },
 ];

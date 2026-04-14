@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { useAuthGuard } from "@/hooks/use-auth-guard";
+import { useAuth } from "@/store/useAuth";
 
 export default function AdminLayout({
   children,
@@ -12,8 +14,24 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const { isReady } = useAuthGuard();
+  const { user } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isReady || !user) return;
+    if (
+      user.adminPosition === "CONTENT_WRITER" &&
+      !pathname.startsWith("/admin/blog")
+    ) {
+      router.replace("/admin/blog");
+    }
+  }, [isReady, user, pathname, router]);
 
   if (!isReady) return null;
+  if (user?.adminPosition === "CONTENT_WRITER" && !pathname.startsWith("/admin/blog")) {
+    return null;
+  }
 
   return (
     <SidebarProvider

@@ -29,7 +29,10 @@ const sidebarData = {
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const { user } = useAuth();
 
-  const navItems = React.useMemo(() => getNavByRole(user?.role), [user?.role]);
+  const navItems = React.useMemo(
+    () => getNavByRole(user?.role, user?.adminPosition),
+    [user?.role, user?.adminPosition],
+  );
 
   // if (isLoading) return null; // or skeleton
 
